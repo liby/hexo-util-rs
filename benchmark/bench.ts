@@ -1,23 +1,49 @@
+import fs from 'fs'
+import { join as pathJoin } from 'path'
+
 import b from 'benny'
+import { stripHTML as hexoUtilStripHTML } from 'hexo-util'
+import { stripHtml as stringStripHtml } from 'string-strip-html'
+import striptags from 'striptags'
 
 import { stripTags } from '../index'
 
-function hexoUtilStriptags(html: string) {
-  // Todo: implement
-  // eslint-disable-next-line no-console
-  console.log(html)
-}
+const miniFixture =
+  '<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="https://www.google.com">Google</a><div>'
+const largeFixture = fs.readFileSync(pathJoin(__dirname, './fixture.html'), 'utf8')
 
 async function run() {
   await b.suite(
-    'faster than hexo-util-strip-tags',
-
-    b.add('RiiR', () => {
-      stripTags('lorem ipsum < a> < div>')
+    'mini fixture',
+    b.add('hexo-util-rs', () => {
+      stripTags(miniFixture)
+    }),
+    b.add('hexo-util', () => {
+      hexoUtilStripHTML(miniFixture)
+    }),
+    b.add('striptags', () => {
+      striptags(miniFixture)
+    }),
+    b.add('string-strip-html', () => {
+      stringStripHtml(miniFixture)
     }),
 
-    b.add('Hexo util', () => {
-      hexoUtilStriptags('lorem ipsum < a> < div>')
+    b.cycle(),
+    b.complete(),
+  )
+  await b.suite(
+    'large fixture',
+    b.add('hexo-util-rs', () => {
+      stripTags(largeFixture)
+    }),
+    b.add('hexo-util', () => {
+      hexoUtilStripHTML(largeFixture)
+    }),
+    b.add('striptags', () => {
+      striptags(largeFixture)
+    }),
+    b.add('string-strip-html', () => {
+      stringStripHtml(largeFixture)
     }),
 
     b.cycle(),
