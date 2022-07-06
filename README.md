@@ -1,25 +1,20 @@
 # `@napi-rs/hexo-util`
 
-![https://github.com/napi-rs/package-template/actions](https://github.com/napi-rs/package-template/workflows/CI/badge.svg)
+![https://github.com/liby/hexo-util-rs/actions](https://github.com/liby/hexo-util-rs/workflows/CI/badge.svg)
 
-> Template project for writing node package with napi-rs.
+> Generated from [napi-rs/package-template](https://github.com/napi-rs/package-template)
+
+⚠️ This project is in alpha stage. And there may some bugs existed.
 
 # Usage
 
-1. Click **Use this template**.
-2. **Clone** your project.
-3. Run `yarn install` to install dependencies.
-4. Run `npx napi rename -n [name]` command under the project folder to rename your package.
+1. **Clone** this project.
+2. Run `yarn install` to install dependencies.
+3. After `yarn build/npm run` build command, you can see `hexo-util.[darwin|win32|linux].node` file in project root. This is the native addon built from [lib.rs](https://github.com/liby/hexo-util-rs/blob/main/src/lib.rs).
+4. Test With [ava](https://github.com/avajs/ava), run `yarn test/npm run test` to testing native addon. You can also switch to another testing framework if you want.
 
-## Install this test package
-
-```
-yarn add @napi-rs/hexo-util
-```
 
 ## Support matrix
-
-### Operating Systems
 
 |                  | node14 | node16 | node18 |
 | ---------------- | ------ | ------ | ------ |
@@ -37,69 +32,64 @@ yarn add @napi-rs/hexo-util
 | Android armv7    | ✓      | ✓      | ✓      |
 | FreeBSD x64      | ✓      | ✓      | ✓      |
 
-## Ability
+## Performance
 
-### Build
+See [benchmark](https://github.com/liby/hexo-util-rs/tree/main/benchmark) for benchmark code.
 
-After `yarn build/npm run build` command, you can see `hexo-util.[darwin|win32|linux].node` file in project root. This is the native addon built from [lib.rs](./src/lib.rs).
-
-### Test
-
-With [ava](https://github.com/avajs/ava), run `yarn test/npm run test` to testing native addon. You can also switch to another testing framework if you want.
-
-### CI
-
-With GitHub actions, every commits and pull request will be built and tested automatically in [`node@14`, `node@16`, `@node18`] x [`macOS`, `Linux`, `Windows`] matrix. You will never be afraid of the native addon broken in these platforms.
-
-### Release
-
-Release native package is very difficult in old days. Native packages may ask developers who use its to install `build toolchain` like `gcc/llvm` , `node-gyp` or something more.
-
-With `GitHub actions`, we can easily prebuild `binary` for major platforms. And with `N-API`, we should never afraid of **ABI Compatible**.
-
-The other problem is how to deliver prebuild `binary` to users. Download it in `postinstall` script is a common way which most packages do it right now. The problem of this solution is it introduced many other packages to download binary which has not been used by `runtime codes`. The other problem is some user may not easily download the binary from `GitHub/CDN` if they are behind private network (But in most case, they have a private NPM mirror).
-
-In this package we choose a better way to solve this problem. We release different `npm packages` for different platform. And add it to `optionalDependencies` before release the `Major` package to npm.
-
-`NPM` will choose which native package should download from `registry` automatically. You can see [npm](./npm) dir for details. And you can also run `yarn add @napi-rs/package-template` to see how it works.
-
-## Develop requirements
-
-- Install latest `Rust`
-- Install `Node.js@10+` which fully supported `Node-API`
-- Install `yarn@1.x`
-
-## Test in local
-
-- yarn
-- yarn build
-- yarn test
-
-And you will see:
-
-```bash
-$ ava --verbose
-
-  ✔ sync function from native code
-  ✔ sleep function from native code (201ms)
-  ─
-
-  2 tests passed
-✨  Done in 1.12s.
+Hardware info:
+```
+System Version: macOS 12.4 (21F79)
+Kernel Version: Darwin 21.5.0
+Processor Name: 8-Core Intel Core i9
+Processor Speed: 2.3 GHz
+L2 Cache (per Core): 256 KB
+L3 Cache: 16 MB
+Memory: 32 GB
 ```
 
-## Release package
-
-Ensure you have set you **NPM_TOKEN** in `GitHub` project setting.
-
-In `Settings -> Secrets`, add **NPM_TOKEN** into it.
-
-When you want release package:
-
+Benchmark:
 ```
-npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease [--preid=<prerelease-id>] | from-git]
+❯ yarn bench
+Running "mini fixture" suite...
+Progress: 100%
 
-git push
+  hexo-util-rs-buffer:
+    1 343 399 ops/s, ±0.55%   | 12.9% slower
+
+  hexo-util-rs:
+    1 542 449 ops/s, ±0.44%   | fastest
+
+  hexo-util:
+    933 979 ops/s, ±1.30%     | 39.45% slower
+
+  striptags:
+    466 526 ops/s, ±1.55%     | 69.75% slower
+
+  string-strip-html:
+    13 805 ops/s, ±11.48%      | slowest, 99.1% slower
+
+Finished 5 cases!
+  Fastest: hexo-util-rs
+  Slowest: string-strip-html
+Running "large fixture" suite...
+Progress: 100%
+
+  hexo-util-rs-buffer:
+    816 ops/s, ±2.62%   | fastest
+
+  hexo-util-rs:
+    631 ops/s, ±3.68%   | 22.67% slower
+
+  hexo-util:
+    285 ops/s, ±4.13%   | 65.07% slower
+
+  striptags:
+    141 ops/s, ±1.45%   | 82.72% slower
+
+  string-strip-html:
+    7 ops/s, ±8.74%     | slowest, 99.14% slower
+
+Finished 5 cases!
+  Fastest: hexo-util-rs-buffer
+  Slowest: string-strip-html
 ```
-
-GitHub actions will do the rest job for you.

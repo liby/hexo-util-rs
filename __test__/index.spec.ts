@@ -48,10 +48,3 @@ test('should strip <> within quotes', (t) => {
 
   t.is(stripTags(html), text)
 })
-
-test('should strip non string parameters', (t) => {
-  const html = ['X']
-  const text = ''
-
-  t.is(stripTags(html as unknown as string), text)
-})
