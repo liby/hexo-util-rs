@@ -10,11 +10,16 @@ import { stripTags } from '../index'
 
 const miniFixture =
   '<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="https://www.google.com">Google</a><div>'
-const largeFixture = fs.readFileSync(pathJoin(__dirname, './fixture.html'), 'utf8')
+const miniFixtureBuffer = Buffer.from(miniFixture)
+const largeFixtureBuffer = fs.readFileSync(pathJoin(__dirname, './fixture.html'))
+const largeFixture = largeFixtureBuffer.toString('utf8')
 
 async function run() {
   await b.suite(
     'mini fixture',
+    b.add('hexo-util-rs-buffer', () => {
+      stripTags(miniFixtureBuffer)
+    }),
     b.add('hexo-util-rs', () => {
       stripTags(miniFixture)
     }),
@@ -33,6 +38,9 @@ async function run() {
   )
   await b.suite(
     'large fixture',
+    b.add('hexo-util-rs-buffer', () => {
+      stripTags(largeFixtureBuffer)
+    }),
     b.add('hexo-util-rs', () => {
       stripTags(largeFixture)
     }),

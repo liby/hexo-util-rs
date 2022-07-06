@@ -1,6 +1,16 @@
+use napi::{bindgen_prelude::Buffer, Either};
+
 #[macro_use]
 extern crate napi_derive;
-use napi::*;
+
+#[cfg(all(
+  not(all(target_os = "linux", target_env = "musl", target_arch = "aarch64")),
+  not(debug_assertions)
+))]
+#[global_allocator]
+static ALLOC: mimalloc_rust::GlobalMiMalloc = mimalloc_rust::GlobalMiMalloc;
+
+const MAX_TAG_BUFFER: usize = 4096;
 
 enum State {
   PlainText,
@@ -8,53 +18,66 @@ enum State {
   Comment,
 }
 
-#[js_function(1)]
-fn strip_tags(ctx: CallContext) -> Result<JsString> {
-  // if not string, then safely return an empty string
-  if ctx.get::<JsString>(0).is_err() {
-    return ctx.env.create_string("");
+trait ToChars {
+  fn chars(&self) -> napi::Result<std::str::Chars>;
+}
+
+impl ToChars for Either<String, Buffer> {
+  fn chars(&self) -> napi::Result<std::str::Chars> {
+    match self {
+      Either::A(s) => Ok(s.as_str().chars()),
+      Either::B(b) => std::str::from_utf8(&b).map(|s| s.chars()).map_err(|_| {
+        napi::Error::new(
+          napi::Status::InvalidArg,
+          "input html is not valid utf8 string".to_owned(),
+        )
+      }),
+    }
   }
+}
 
-  let html = ctx.get::<JsString>(0)?.into_utf8()?;
-  let html_content = html.as_str()?;
-
+#[napi]
+pub fn strip_tags(html_content: Either<String, Buffer>) -> napi::Result<String> {
   let mut state = State::PlainText;
-  let mut tag_buffer = String::new();
+  let mut tag_buffer = String::with_capacity(MAX_TAG_BUFFER);
   let mut depth = 0;
   let mut in_quote_char = None;
-  let mut output = String::new();
+  let mut output = String::with_capacity(match &html_content {
+    Either::A(s) => s.len(),
+    Either::B(b) => b.len(),
+  });
 
-  for char in html_content.chars() {
+  html_content.chars()?.for_each(|char| {
     match state {
       State::PlainText => {
         if char == '<' {
           state = State::Html;
-          tag_buffer += &char.to_string();
+          tag_buffer.push(char);
         } else {
           output.push(char);
         }
-        continue;
+        return;
       }
       State::Html => {
         match char {
           '<' => {
             // ignore '<' if inside a quote
             if in_quote_char.is_some() {
-              continue;
+              return;
             }
             // we're seeing a nested '<'
             depth += 1;
-            continue;
+            return;
           }
           '>' => {
             // ignore '<' if inside a quote
             if in_quote_char.is_some() {
-              continue;
+              return;
             }
 
             if depth != 0 {
               depth -= 1;
-              continue;
+              return;
             }
 
             // this is closing the tag in tag_buffer
@@ -62,8 +85,8 @@ fn strip_tags(ctx: CallContext) -> Result<JsString> {
             state = State::PlainText;
 
             // tag_buffer += '>';
-            tag_buffer = String::new();
-            continue;
+            tag_buffer = String::with_capacity(MAX_TAG_BUFFER);
+            return;
           }
           '"' | '\'' => {
             // catch both single and double quotes
@@ -78,29 +101,29 @@ fn strip_tags(ctx: CallContext) -> Result<JsString> {
             }
 
             tag_buffer.push(char);
-            continue;
+            return;
           }
           '-' => {
             if tag_buffer == *"<!-" {
               state = State::Comment;
             }
             tag_buffer.push(char);
-            continue;
+            return;
           }
           ' ' | '\t' | '\n' | '\r' => {
             if tag_buffer == *"<" {
               state = State::PlainText;
               output.push_str("< ");
-              tag_buffer = String::new();
-              continue;
+              tag_buffer = String::with_capacity(MAX_TAG_BUFFER);
+              return;
             }
 
             tag_buffer.push(char);
-            continue;
+            return;
           }
           _ => {
             tag_buffer.push(char);
-            continue;
+            return;
           }
         }
       }
@@ -109,21 +132,15 @@ fn strip_tags(ctx: CallContext) -> Result<JsString> {
           if tag_buffer.ends_with("--") {
             state = State::PlainText;
           }
-          tag_buffer = String::new();
-          continue;
+          tag_buffer = String::with_capacity(MAX_TAG_BUFFER);
+          return;
         } else {
           tag_buffer.push(char);
-          continue;
+          return;
         }
       }
     }
-  }
+  });
 
-  ctx.env.create_string(&output)
-}
-
-#[module_exports]
-fn init(mut exports: JsObject) -> Result<()> {
-  exports.create_named_method("stripTags", strip_tags)?;
-  Ok(())
+  Ok(output)
 }
