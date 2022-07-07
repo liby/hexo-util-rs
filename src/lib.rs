@@ -1,4 +1,4 @@
-use napi::{bindgen_prelude::Buffer, Either};
+use napi::bindgen_prelude::*;
 
 #[macro_use]
 extern crate napi_derive;
@@ -22,29 +22,39 @@ trait ToChars {
   fn chars(&self) -> napi::Result<std::str::Chars>;
 }
 
-impl ToChars for Either<String, Buffer> {
+impl ToChars for Either3<Buffer, String, Unknown> {
   fn chars(&self) -> napi::Result<std::str::Chars> {
     match self {
-      Either::A(s) => Ok(s.as_str().chars()),
-      Either::B(b) => std::str::from_utf8(&b).map(|s| s.chars()).map_err(|_| {
+      Either3::A(b) => std::str::from_utf8(&b).map(|s| s.chars()).map_err(|_| {
         napi::Error::new(
           napi::Status::InvalidArg,
           "input html is not valid utf8 string".to_owned(),
         )
       }),
+      Either3::B(s) => Ok(s.as_str().chars()),
+      _ => Ok("".chars()),
     }
   }
 }
 
 #[napi]
-pub fn strip_tags(html_content: Either<String, Buffer>) -> napi::Result<String> {
+pub fn strip_tags(
+  #[napi(ts_arg_type = "Buffer | string")] html_content: Either3<Buffer, String, Unknown>,
+) -> Result<String> {
+  if let Either3::C(_) = html_content {
+    return Err(Error::new(
+      Status::InvalidArg,
+      "input html should be either Buffer or String".to_owned(),
+    ));
+  }
   let mut state = State::PlainText;
   let mut tag_buffer = String::with_capacity(MAX_TAG_BUFFER);
   let mut depth = 0;
   let mut in_quote_char = None;
   let mut output = String::with_capacity(match &html_content {
-    Either::A(s) => s.len(),
-    Either::B(b) => b.len(),
+    Either3::A(s) => s.len(),
+    Either3::B(b) => b.len(),
+    _ => 0,
   });
 
   html_content.chars()?.for_each(|char| {
@@ -90,15 +100,13 @@ pub fn strip_tags(html_content: Either<String, Buffer>) -> napi::Result<String> 
           }
           '"' | '\'' => {
             // catch both single and double quotes
-            if in_quote_char.is_some() && char == in_quote_char.unwrap() {
-              in_quote_char = None;
+            if let Some(quote_char) = in_quote_char {
+              if char == quote_char {
+                in_quote_char = None;
+              }
             } else {
-              in_quote_char = if in_quote_char.is_some() {
-                in_quote_char
-              } else {
-                Some(char)
-              };
-            }
+              in_quote_char = Some(char);
+            };
 
             tag_buffer.push(char);
             return;
