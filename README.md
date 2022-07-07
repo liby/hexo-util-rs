@@ -48,6 +48,10 @@ Memory: 32 GB
 ```
 
 Benchmark:
+
+<details>
+<summary>Strip HTML</summary>
+
 ```
 ❯ yarn bench
 Running "mini fixture" suite...
@@ -93,3 +97,4 @@ Finished 5 cases!
   Fastest: hexo-util-rs-buffer
   Slowest: string-strip-html
 ```
+</details>
