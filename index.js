@@ -218,6 +218,7 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { stripTags } = nativeBinding
+const { stripTags, truncate } = nativeBinding
 
 module.exports.stripTags = stripTags
+module.exports.truncate = truncate

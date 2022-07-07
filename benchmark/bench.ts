@@ -2,17 +2,20 @@ import fs from 'fs'
 import { join as pathJoin } from 'path'
 
 import b from 'benny'
-import { stripHTML as hexoUtilStripHTML } from 'hexo-util'
+import { stripHTML as hexoUtilStripHTML, truncate as hexoUtilTruncate } from 'hexo-util'
 import { stripHtml as stringStripHtml } from 'string-strip-html'
 import striptags from 'striptags'
 
-import { stripTags } from '../index'
+import { stripTags, truncate } from '../index'
 
 const miniFixture =
   '<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="https://www.google.com">Google</a><div>'
 const miniFixtureBuffer = Buffer.from(miniFixture)
 const largeFixtureBuffer = fs.readFileSync(pathJoin(__dirname, './fixture.html'))
 const largeFixture = largeFixtureBuffer.toString('utf8')
+
+const longTextBuffer = fs.readFileSync(pathJoin(__dirname, './long_text.txt'))
+const longText = longTextBuffer.toString('utf8')
 
 async function run() {
   await b.suite(
@@ -52,6 +55,21 @@ async function run() {
     }),
     b.add('string-strip-html', () => {
       stringStripHtml(largeFixture)
+    }),
+
+    b.cycle(),
+    b.complete(),
+  )
+  await b.suite(
+    'truncate',
+    b.add('hexo-util-rs-buffer', () => {
+      truncate(longTextBuffer)
+    }),
+    b.add('hexo-util-rs', () => {
+      truncate(longText)
+    }),
+    b.add('hexo-util', () => {
+      hexoUtilTruncate(longText)
     }),
 
     b.cycle(),

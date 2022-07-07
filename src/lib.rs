@@ -10,3 +10,4 @@ extern crate napi_derive;
 static ALLOC: mimalloc_rust::GlobalMiMalloc = mimalloc_rust::GlobalMiMalloc;
 
 mod strip_html;
+mod truncate;
