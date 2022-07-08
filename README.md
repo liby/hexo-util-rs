@@ -98,3 +98,24 @@ Finished 5 cases!
   Slowest: string-strip-html
 ```
 </details>
+
+
+<details>
+<summary>Slugify</summary>
+
+```
+❯ yarn bench
+Running "slugify and escape diacritic" suite...
+Progress: 100%
+
+  hexo-util-rs:
+    1 104 153 ops/s, ±0.30%   | fastest
+
+  hexo-util:
+    255 709 ops/s, ±0.61%     | slowest, 76.84% slower
+
+Finished 2 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+```
+</details>
