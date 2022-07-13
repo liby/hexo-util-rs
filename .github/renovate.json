@@ -1,0 +1,18 @@
+{
+  "semanticCommits": "enabled",
+  "packageRules": [
+    {
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "depTypeList": ["devDependencies"],
+      "automerge": true
+    }
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "extends": ["schedule:monthly"]
+  },
+  "extends": ["config:base", ":preserveSemverRanges"]
+}
