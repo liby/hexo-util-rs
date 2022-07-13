@@ -64,7 +64,6 @@ enum Case {
 
 fn slugify(s: &str, sep: &str, transform: Option<Case>) -> String {
   let mut slug: Vec<u8> = Vec::with_capacity(s.len());
-  let sep_char: Vec<char> = sep.chars().collect();
   // Starts with true to avoid leading separator
   let mut prev_is_sep = true;
   {
@@ -92,7 +91,7 @@ fn slugify(s: &str, sep: &str, transform: Option<Case>) -> String {
       }
       _ => {
         if !prev_is_sep {
-          slug.push(sep_char[0] as u8);
+          slug.extend_from_slice(sep.as_bytes());
           prev_is_sep = true;
         }
       }
