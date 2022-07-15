@@ -1,5 +1,5 @@
 const Cache = require('./common/cache')
-const { isExternalLink: isExternalLinkRs, slugize, stripTags } = require('./utils')
+const { isExternalLink: isExternalLinkRs, slugize, stripTags, encodeUrl } = require('./utils')
 
 const externalLinkCache = new Cache()
 
@@ -14,5 +14,6 @@ module.exports.isExternalLink = function isExternalLink(input, sitehost, exclude
   })
 }
 
+module.exports.encodeUrl = encodeUrl
 module.exports.slugize = slugize
 module.exports.stripTags = stripTags

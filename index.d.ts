@@ -8,6 +8,7 @@ export function isExternalLink(
   sitehost: string,
   exclude?: string | Array<string> | undefined | null,
 ): boolean
+export function encodeUrl(url: string): string
 export interface Options {
   separator?: string
   transform?: number

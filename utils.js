@@ -218,8 +218,9 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { isExternalLink, slugize, stripTags } = nativeBinding
+const { isExternalLink, encodeUrl, slugize, stripTags } = nativeBinding
 
 module.exports.isExternalLink = isExternalLink
+module.exports.encodeUrl = encodeUrl
 module.exports.slugize = slugize
 module.exports.stripTags = stripTags

@@ -2,6 +2,7 @@
 import { Cache } from 'hexo-util'
 
 import { benchIsExternalLink } from './is_external_link'
+import { benchEncodeUrl } from './encode_url'
 import { benchSlugize } from './slugize'
 import { benchStripTags } from './strip_html'
 
@@ -12,6 +13,7 @@ Cache.prototype.apply = (_, val) => val()
 benchStripTags()
   .then(() => benchSlugize())
   .then(() => benchIsExternalLink())
+  .then(benchEncodeUrl)
   .catch((e) => {
     console.error(e)
   })
