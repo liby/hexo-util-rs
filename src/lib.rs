@@ -9,5 +9,6 @@ extern crate napi_derive;
 #[global_allocator]
 static ALLOC: mimalloc_rust::GlobalMiMalloc = mimalloc_rust::GlobalMiMalloc;
 
+mod is_external_link;
 mod slugize;
 mod strip_html;
