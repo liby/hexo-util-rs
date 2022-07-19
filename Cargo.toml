@@ -13,6 +13,7 @@ crate-type = ["cdylib"]
 napi = "2"
 napi-derive = "2"
 deunicode = "1"
+url = "2"
 
 [target.'cfg(not(target_os = "linux"))'.dependencies]
 mimalloc-rust = { version = "0.2" }
