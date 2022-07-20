@@ -3,7 +3,9 @@ import b from 'benny'
 // @ts-ignore
 import { isExternalLink as hexoIsExternalLink } from 'hexo-util'
 
-import { isExternalLink } from '../index'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore generated types are for index.js
+import { isExternalLink } from '../utils.js'
 
 export async function benchIsExternalLink() {
   // eslint-disable-next-line no-console
