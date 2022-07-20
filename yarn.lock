@@ -49,6 +49,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.14.0":
+  version: 7.18.9
+  resolution: "@babel/runtime@npm:7.18.9"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: 36dd736baba7164e82b3cc9d43e081f0cb2d05ff867ad39cac515d99546cee75b7f782018b02a3dcf5f2ef3d27f319faa68965fdfec49d4912c60c6002353a2e
+  languageName: node
+  linkType: hard
+
 "@eslint/eslintrc@npm:^1.3.0":
   version: 1.3.0
   resolution: "@eslint/eslintrc@npm:1.3.0"
@@ -122,7 +131,7 @@ __metadata:
     lint-staged: ^13.0.1
     npm-run-all: ^4.1.5
     prettier: ^2.6.2
-    string-strip-html: 11
+    string-strip-html: 8
     striptags: ^3.2.0
     typescript: ^4.7.3
   languageName: unknown
@@ -2229,7 +2238,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-entities@npm:^2.3.3":
+"html-entities@npm:^2.3.2":
   version: 2.3.3
   resolution: "html-entities@npm:2.3.3"
   checksum: 92521501da8aa5f66fee27f0f022d6e9ceae62667dae93aa6a2f636afa71ad530b7fb24a18d4d6c124c9885970cac5f8a52dbf1731741161002816ae43f98196
@@ -3681,40 +3690,45 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ranges-apply@npm:^6.1.4":
-  version: 6.1.4
-  resolution: "ranges-apply@npm:6.1.4"
+"ranges-apply@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "ranges-apply@npm:5.1.0"
   dependencies:
-    ranges-merge: ^8.1.4
-    tiny-invariant: ^1.2.0
-  checksum: 980390d94c3f41d5f7baa639716653ffe682bc0dd3fa10978dbd2059daef69d2b8fad69bf8d82007b3b901533c0be0e6014a33bee65fbcdb714ea9faf1a504bd
+    "@babel/runtime": ^7.14.0
+    ranges-merge: ^7.1.0
+  checksum: 2b5b7a80e7295ff687162545b474ecf5bdb56cff49ccc19d02bfa4d8b3d85bb059545126316cd82c5fdd514631b4cf39504f6e2f0e29ee305e26314a9b1b6e9e
   languageName: node
   linkType: hard
 
-"ranges-merge@npm:^8.1.4":
-  version: 8.1.4
-  resolution: "ranges-merge@npm:8.1.4"
+"ranges-merge@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "ranges-merge@npm:7.1.0"
   dependencies:
-    ranges-push: ^6.1.4
-    ranges-sort: ^5.0.14
-  checksum: ac0d3799dd44b32f142648e516e7a1d92ecf133250234cc72685949805413b62d8f77d948353a6b8f0d8ff76a0d2b66ca8854b190beb12dcb4c337faff3ef2b3
+    "@babel/runtime": ^7.14.0
+    ranges-push: ^5.1.0
+    ranges-sort: ^4.1.0
+  checksum: 830bfb0eea10a4a6d86da7ad427239318717cdf838d163474b0ab3433e3b4e6b1acd03f93fb3de034b9f844545c7e92ae8b7f790a25f0f1c4d6399f40b6da35f
   languageName: node
   linkType: hard
 
-"ranges-push@npm:^6.1.4":
-  version: 6.1.4
-  resolution: "ranges-push@npm:6.1.4"
+"ranges-push@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "ranges-push@npm:5.1.0"
   dependencies:
-    string-collapse-leading-whitespace: ^6.0.15
-    string-trim-spaces-only: ^4.0.14
-  checksum: 6159ada70651d369646e11913f04890299451e4fd4eec9870ddee149bfb58f453198443afc494ce30b92dd31f4b86de0754375583bd4a177f9252472e05bc2a1
+    "@babel/runtime": ^7.14.0
+    ranges-merge: ^7.1.0
+    string-collapse-leading-whitespace: ^5.1.0
+    string-trim-spaces-only: ^3.1.0
+  checksum: da19f461dc5bc36a84e3acfaa29d94b7dfe054b9b70e6816105e28e1b34054dccfb347457456afbe8ad401a47e192c62ca3efdea23ef8624bd0b77c8ad139315
   languageName: node
   linkType: hard
 
-"ranges-sort@npm:^5.0.14":
-  version: 5.0.14
-  resolution: "ranges-sort@npm:5.0.14"
-  checksum: bb443d052554361adf3a17e8faba5912aaeca0b51c154e756f444f66b7fdec0767277c95f8d6b53ed587da55d399a46018af9ab2ec7e01c79729683e62eaf4b8
+"ranges-sort@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "ranges-sort@npm:4.1.0"
+  dependencies:
+    "@babel/runtime": ^7.14.0
+  checksum: a58f2ddca3ad0f2ecafb74b75dc806e9a9e652621f1e83710cf7e415f4cda75cf9a1ee3c64c1a6ae0ef6858ace2a5193f40a8e8f9a6bec3f339cf3b25c78508d
   languageName: node
   linkType: hard
 
@@ -3746,6 +3760,13 @@ __metadata:
   dependencies:
     picomatch: ^2.2.1
   checksum: 1ced032e6e45670b6d7352d71d21ce7edf7b9b928494dcaba6f11fba63180d9da6cd7061ebc34175ffda6ff529f481818c962952004d273178acd70f7059b320
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.13.4":
+  version: 0.13.9
+  resolution: "regenerator-runtime@npm:0.13.9"
+  checksum: 65ed455fe5afd799e2897baf691ca21c2772e1a969d19bb0c4695757c2d96249eb74ee3553ea34a91062b2a676beedf630b4c1551cc6299afb937be1426ec55e
   languageName: node
   linkType: hard
 
@@ -4147,42 +4168,48 @@ __metadata:
   languageName: node
   linkType: hard
 
-"string-collapse-leading-whitespace@npm:^6.0.15":
-  version: 6.0.15
-  resolution: "string-collapse-leading-whitespace@npm:6.0.15"
-  checksum: ca4f0f0b840bccf41c06914c357cd64ccd24f74c70538320ef080d54caf468a7f0822e64dc2b18ece55cefbcbcfe5c92d78d6f94a6de207a2229864ca1b75f40
+"string-collapse-leading-whitespace@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "string-collapse-leading-whitespace@npm:5.1.0"
+  dependencies:
+    "@babel/runtime": ^7.14.0
+  checksum: 5f5b8881b939b3380f9856ddaca7712271d0fdf84989312b8d763eb9016f94dfbdbe316860aba2ae28fcb1381a23c9e36d61629b9cc67ad1e9c5a44a2b17c449
   languageName: node
   linkType: hard
 
-"string-left-right@npm:^5.0.14":
-  version: 5.0.14
-  resolution: "string-left-right@npm:5.0.14"
+"string-left-right@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "string-left-right@npm:4.1.0"
   dependencies:
+    "@babel/runtime": ^7.14.0
     lodash.clonedeep: ^4.5.0
     lodash.isplainobject: ^4.0.6
-  checksum: d6d1846fd913040e0cb37f478f7ba4e716d2d0a8bdcba72906b56b1365b6831a66c1a8fa770236a6a1f9f01a0ad31eb96e513bbf4ab35e1c8b3f70ed94decb57
+  checksum: 2730299044f6f25f627dff66e02a1114245781d05944b696b19ddd98310011cd8ab183f867bdbf3abc39f992cb9e99023fbbe7cd97bd7f47ce0528fc13812831
   languageName: node
   linkType: hard
 
-"string-strip-html@npm:11":
-  version: 11.0.0
-  resolution: "string-strip-html@npm:11.0.0"
+"string-strip-html@npm:8":
+  version: 8.3.0
+  resolution: "string-strip-html@npm:8.3.0"
   dependencies:
-    html-entities: ^2.3.3
+    "@babel/runtime": ^7.14.0
+    html-entities: ^2.3.2
     lodash.isplainobject: ^4.0.6
     lodash.trim: ^4.5.1
     lodash.without: ^4.4.0
-    ranges-apply: ^6.1.4
-    ranges-push: ^6.1.4
-    string-left-right: ^5.0.14
-  checksum: bf56af8f85b14801d0b0f5c973302810ca1cc544650bd049432360160c4cad93d09df37b1924afd87eb6af398244c506d6e9c7a2c19abe61c2e20f6733b282c6
+    ranges-apply: ^5.1.0
+    ranges-push: ^5.1.0
+    string-left-right: ^4.1.0
+  checksum: fae36ce5a8525b0a6c4828cf9dfe335be298744ecdb69e99bc37d033edffe623dcc4870273a3515811aa3afe2d668df3506d9cbafc8e8bcddfebf92f12284b5e
   languageName: node
   linkType: hard
 
-"string-trim-spaces-only@npm:^4.0.14":
-  version: 4.0.14
-  resolution: "string-trim-spaces-only@npm:4.0.14"
-  checksum: 171a01b6853ce07e13b2bb7d1080f37d92357b29427a2530ea3c2c6651a3d31f4e59649f917d38bd23752b7144aaa676ab9a637baf58f152f272d1567e52567b
+"string-trim-spaces-only@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "string-trim-spaces-only@npm:3.1.0"
+  dependencies:
+    "@babel/runtime": ^7.14.0
+  checksum: cfb843625908e8aa959cf6375d73565e0a9b67c8e69ded703f08cb0477fd3d67da98c23910389613fdb4c6d7744adaf399b83ac3f5e94ea8fbff8ce41622a43e
   languageName: node
   linkType: hard
 
@@ -4381,13 +4408,6 @@ __metadata:
   version: 1.0.0
   resolution: "time-zone@npm:1.0.0"
   checksum: e46f5a69b8c236dcd8e91e29d40d4e7a3495ed4f59888c3f84ce1d9678e20461421a6ba41233509d47dd94bc18f1a4377764838b21b584663f942b3426dcbce8
-  languageName: node
-  linkType: hard
-
-"tiny-invariant@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "tiny-invariant@npm:1.2.0"
-  checksum: e09a718a7c4a499ba592cdac61f015d87427a0867ca07f50c11fd9b623f90cdba18937b515d4a5e4f43dac92370498d7bdaee0d0e7a377a61095e02c4a92eade
   languageName: node
   linkType: hard
 
