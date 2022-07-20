@@ -43,7 +43,11 @@ fn encode_url_impl(input: &str) -> String {
   };
   if is_relative {
     let mut str = String::from(url);
-    str.drain(..8);
+    if input.as_bytes()[0] == b'/' {
+      str.drain(..8);
+    } else {
+      str.drain(..9);
+    }
     return str;
   }
   let domain = match url.domain() {
