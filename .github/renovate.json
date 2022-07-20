@@ -14,5 +14,6 @@
     "enabled": true,
     "extends": ["schedule:monthly"]
   },
-  "extends": ["config:base", ":preserveSemverRanges"]
+  "extends": ["config:base", ":preserveSemverRanges"],
+  "ignoreDeps": ["string-strip-html"]
 }
