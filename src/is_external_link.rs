@@ -25,21 +25,26 @@ pub fn is_external_link(
   sitehost: String,
   exclude: Option<Either<String, Vec<String>>>,
 ) -> Result<bool> {
-  let sitehost = url::Url::parse(&sitehost)
-    .or_else(|_| url::Url::parse(&format!("http://{}", sitehost)))
-    .map_err(|_| {
-      Error::new(
-        Status::InvalidArg,
-        "sitehost is neither a valid URL nor a hostname".into(),
-      )
-    })?;
-
   if !["//", "http:", "https:"]
     .into_iter()
     .any(|prefix| url.starts_with(prefix))
   {
     return Ok(false);
   }
+
+  let sitehost = url::Url::parse(&sitehost)
+    .or_else(|_| {
+      let mut site_url = String::with_capacity(7 + sitehost.len());
+      site_url.push_str("http://");
+      site_url.push_str(&sitehost);
+      url::Url::parse(&site_url)
+    })
+    .map_err(|_| {
+      Error::new(
+        Status::InvalidArg,
+        "sitehost is neither a valid URL nor a hostname".into(),
+      )
+    })?;
 
   let exclude = match exclude {
     None => vec![],
