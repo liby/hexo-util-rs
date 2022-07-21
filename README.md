@@ -127,37 +127,49 @@ Finished 2 cases!
 ```
 ❯ yarn bench
 Running "Internal absolute url" suite...
+Progress: 50%
+
+  hexo-util-rs:
+    1 038 833 ops/s, ±0.37% 
 Progress: 100%
 
   hexo-util-rs:
-    3 364 399 ops/s, ±0.61%   | fastest
+    1 038 833 ops/s, ±0.37%   | fastest
 
   hexo-util:
-    3 351 396 ops/s, ±0.25%   | slowest, 0.39% slower
+    214 596 ops/s, ±0.30%     | slowest, 79.34% slower
 
 Finished 2 cases!
   Fastest: hexo-util-rs
   Slowest: hexo-util
 Running "External absolute url" suite...
+Progress: 50%
+
+  hexo-util-rs:
+    953 787 ops/s, ±0.41% 
 Progress: 100%
 
   hexo-util-rs:
-    3 123 518 ops/s, ±0.32%   | fastest
+    953 787 ops/s, ±0.41%   | fastest
 
   hexo-util:
-    3 095 847 ops/s, ±0.33%   | slowest, 0.89% slower
+    203 306 ops/s, ±0.45%   | slowest, 78.68% slower
 
 Finished 2 cases!
   Fastest: hexo-util-rs
   Slowest: hexo-util
 Running "Relative absolute url" suite...
+Progress: 50%
+
+  hexo-util-rs:
+    42 956 520 ops/s, ±0.87% 
 Progress: 100%
 
   hexo-util-rs:
-    3 387 815 ops/s, ±0.70%   | fastest
+    42 956 520 ops/s, ±0.87%   | fastest
 
   hexo-util:
-    3 276 915 ops/s, ±0.95%   | slowest, 3.27% slower
+    18 071 147 ops/s, ±0.63%   | slowest, 57.93% slower
 
 Finished 2 cases!
   Fastest: hexo-util-rs
