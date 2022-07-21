@@ -98,7 +98,8 @@
     ],
     "environmentVariables": {
       "TS_NODE_PROJECT": "./tsconfig.json"
-    }
+    },
+    "workerThreads": false
   },
   "prettier": {
     "printWidth": 120,
