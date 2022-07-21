@@ -11,8 +11,8 @@ import { benchStripTags } from './strip_html'
 Cache.prototype.apply = (_, val) => val()
 
 benchStripTags()
-  .then(() => benchSlugize())
-  .then(() => benchIsExternalLink())
+  .then(benchSlugize)
+  .then(benchIsExternalLink)
   .then(benchEncodeUrl)
   .catch((e) => {
     console.error(e)

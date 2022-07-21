@@ -176,3 +176,59 @@ Finished 2 cases!
   Slowest: hexo-util
 ```
 </details>
+
+<details>
+<summary>Encode URL</summary>
+
+```
+❯ yarn bench
+Running "Encode URL - auth" suite...
+Progress: 50%
+
+  hexo-util-rs:
+    1 299 520 ops/s, ±0.86% 
+Progress: 100%
+
+  hexo-util-rs:
+    1 299 520 ops/s, ±0.86%   | fastest
+
+  hexo-util:
+    255 364 ops/s, ±0.92%     | slowest, 80.35% slower
+
+Finished 2 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+Running "Encode URL - Internationalized domain name" suite...
+Progress: 50%
+
+  hexo-util-rs:
+    599 196 ops/s, ±0.87% 
+Progress: 100%
+
+  hexo-util-rs:
+    599 196 ops/s, ±0.87%   | fastest
+
+  hexo-util:
+    177 869 ops/s, ±1.89%   | slowest, 70.32% slower
+
+Finished 2 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+Running "Encode URL - path with unicode" suite...
+Progress: 50%
+
+  hexo-util-rs:
+    1 348 834 ops/s, ±1.38% 
+Progress: 100%
+
+  hexo-util-rs:
+    1 348 834 ops/s, ±1.38%   | fastest
+
+  hexo-util:
+    1 111 192 ops/s, ±7.06%   | slowest, 17.62% slower
+
+Finished 2 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+```
+</details>
