@@ -1,8 +1,8 @@
 // @ts-expect-error missing Cache definition in @types/hexo-util
 import { Cache } from 'hexo-util'
 
-import { benchIsExternalLink } from './is_external_link'
 import { benchEncodeUrl } from './encode_url'
+import { benchIsExternalLink } from './is_external_link'
 import { benchSlugize } from './slugize'
 import { benchStripTags } from './strip_html'
 
