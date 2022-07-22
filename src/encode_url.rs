@@ -1,4 +1,5 @@
 use std::borrow::Cow;
+use std::ops::Range;
 
 use idna::domain_to_unicode;
 use percent_encoding::{percent_decode_str, percent_encode, AsciiSet};
@@ -29,6 +30,36 @@ fn encoding_override(c: &str) -> Cow<[u8]> {
     .to_string()
     .into_bytes()
     .into()
+}
+
+/// Return the strings around `part` if `part` is a non-empty sub-slice of `whole`. Otherwise, return `None`.
+fn split_around_subslice<'a>(whole: &'a str, part: &str) -> Option<(&'a str, &'a str)> {
+  if part.is_empty() {
+    return None;
+  }
+  let Range {
+    start: whole_start,
+    end: whole_end,
+  } = whole.as_bytes().as_ptr_range();
+  let Range {
+    start: part_start,
+    end: part_end,
+  } = part.as_bytes().as_ptr_range();
+  if part_start < whole_start || part_end > whole_end {
+    return None;
+  }
+  // Safety:
+  // 1) We have checked that `part_start` is in bounds of `whole`.
+  // 2) We have checked that `part` is a substring of `whole` in memory, plus the whole memory space `whole` spans
+  //    should belong to one single allocated object. Therefore, `part` and `whole` are derived from the same object.
+  // 3) Any integer is a multiple of size of `u8`, which is 1.
+  // 4) Given `part_start` points to somewhere between `whole_range`, the pointer difference (in bytes) cannot overflow
+  //    an `isize` if `whole.len()` < `isize::MAX`, which is guaranteed by `RawVec`.
+  // 5) A `RawVec` guarantees length never overflows.
+  let part_offset = unsafe { part_start.offset_from(whole_start) as usize };
+  // Safety: same as above
+  let tail_start = unsafe { part_end.offset_from(whole_start) as usize };
+  Some((&whole[..part_offset], &whole[tail_start..]))
 }
 
 fn encode_url_impl(input: &str) -> String {
@@ -70,41 +101,14 @@ fn encode_url_impl(input: &str) -> String {
   // Assuming the domain str slice is a part of the URL (inferred from elided lifetime on `url::Url::domain()`'s
   // signature), we can obtain the relative byte position where domain starts within a URL by calculating the pointer
   // difference between them, which will later be used to extract whatever surrounding the domain.
-
-  let url_str = url.as_str();
-  let url_ptr = url_str.as_ptr();
-  let domain_ptr = domain.as_ptr();
-  let domain_len = domain.len();
-  assert!(domain_len > 0);
-  assert!(domain_len <= url_str.len());
-  assert!(domain_ptr >= url_ptr);
-  assert!(
-    // Safety:
-    // 1) Since the domain part is guaranteed to be non-empty, `domain_ptr` should point to a valid allocated memory
-    //    address, and the resulting pointer will be exactly one byte past the end of the same string.
-    // 2) A `RawVec` guarantees never allocating more than isize::MAX bytes.
-    // 3) A `RawVec` guarantees length never overflows.
-    unsafe { domain_ptr.add(domain_len) } <=
-    // Safety: same as above
-    unsafe { url_ptr.add(url_str.len()) }
-  );
-  // Safety:
-  // 1) Given `domain_ptr` >= `url_ptr` and `domain_ptr`+`domain_len` <= `url_ptr`+`url_len` and no overflow happens,
-  //    we can say that `url_ptr` <= `domain_ptr` <= `url_ptr`+`url_len`-`domain_len` <= `url_ptr`+`url_len`.
-  // 2) We have checked that `domain` is a substring of `url_str` in memory, plus the whole memory space `url_str`
-  //    spans should belong to one single allocated object. Therefore, `domain` and `url_str` are derived from the same
-  //    object.
-  // 3) Any integer is a multiple of size of `u8`, which is 1.
-  // 4) Given `domain_ptr` points to somewhere between `url_ptr` and `url_ptr`+`url_len`, the pointer difference (in
-  //    bytes) cannot overflow an `isize` if `url_len` < `isize::MAX`, which is guaranteed by `RawVec`.
-  // 5) A `RawVec` guarantees length never overflows.
-  let domain_offset = unsafe { domain_ptr.offset_from(url_ptr) as usize };
+  let (head, tail) =
+    split_around_subslice(url.as_str(), domain).expect("Domain is empty or outside url");
 
   let udomain = domain_to_unicode(domain).0;
-  let mut out_str = String::with_capacity(url_str.len() - domain_len + udomain.len());
-  out_str.push_str(&url_str[..domain_offset]);
+  let mut out_str = String::with_capacity(head.len() + tail.len() + udomain.len());
+  out_str.push_str(head);
   out_str.push_str(&udomain);
-  out_str.push_str(&url_str[domain_offset + domain_len..]);
+  out_str.push_str(tail);
   out_str
 }
 
