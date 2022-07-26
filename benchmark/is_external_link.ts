@@ -1,5 +1,5 @@
 import b from 'benny'
-// @ts-expect-error missing Cache definition in @types/hexo-util
+// @ts-expect-error missing isExternalLink definition in @types/hexo-util
 import { isExternalLink as hexoIsExternalLink } from 'hexo-util'
 
 import { isExternalLink as isExternalLinkWithEarlyReturn } from '../index.js'
