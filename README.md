@@ -232,3 +232,92 @@ Finished 2 cases!
   Slowest: hexo-util
 ```
 </details>
+
+<details>
+<summary>Decode URL</summary>
+
+```
+❯ yarn bench
+Running "Decode URL - regular" suite...
+Progress: 50%
+
+  hexo-util-rs:
+    1 632 744 ops/s, ±0.75% 
+Progress: 100%
+
+  hexo-util-rs:
+    1 632 744 ops/s, ±0.75%   | fastest
+
+  hexo-util:
+    272 866 ops/s, ±1.70%     | slowest, 83.29% slower
+
+Finished 2 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+Running "Decode URL - path with space" suite...
+Progress: 50%
+
+  hexo-util-rs:
+    2 630 212 ops/s, ±1.67% 
+Progress: 100%
+
+  hexo-util-rs:
+    2 630 212 ops/s, ±1.67%   | fastest
+
+  hexo-util:
+    1 959 248 ops/s, ±0.72%   | slowest, 25.51% slower
+
+Finished 2 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+Running "Decode URL - space" suite...
+Progress: 50%
+
+  hexo-util-rs:
+    1 228 376 ops/s, ±6.64% 
+Progress: 100%
+
+  hexo-util-rs:
+    1 228 376 ops/s, ±6.64%   | fastest
+
+  hexo-util:
+    239 213 ops/s, ±1.72%     | slowest, 80.53% slower
+
+Finished 2 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+Running "Decode URL - hash and query" suite...
+Progress: 50%
+
+  hexo-util-rs:
+    781 550 ops/s, ±1.90% 
+Progress: 100%
+
+  hexo-util-rs:
+    781 550 ops/s, ±1.90%   | fastest
+
+  hexo-util:
+    166 420 ops/s, ±1.78%   | slowest, 78.71% slower
+
+Finished 2 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+Running "Decode URL - Internationalized domain name" suite...
+Progress: 50%
+
+  hexo-util-rs:
+    492 862 ops/s, ±6.49% 
+Progress: 100%
+
+  hexo-util-rs:
+    492 862 ops/s, ±6.49%   | fastest
+
+  hexo-util:
+    155 205 ops/s, ±1.46%   | slowest, 68.51% slower
+
+Finished 2 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+```
+</details>
+

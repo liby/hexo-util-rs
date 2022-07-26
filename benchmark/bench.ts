@@ -1,6 +1,7 @@
 // @ts-expect-error missing Cache definition in @types/hexo-util
 import { Cache } from 'hexo-util'
 
+import { benchDecodeUrl } from './decode_url'
 import { benchEncodeUrl } from './encode_url'
 import { benchIsExternalLink } from './is_external_link'
 import { benchSlugize } from './slugize'
@@ -14,6 +15,7 @@ benchStripTags()
   .then(benchSlugize)
   .then(benchIsExternalLink)
   .then(benchEncodeUrl)
+  .then(benchDecodeUrl)
   .catch((e) => {
     console.error(e)
   })
