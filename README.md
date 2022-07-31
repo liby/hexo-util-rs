@@ -1,36 +1,30 @@
 # `@napi-rs/hexo-util`
 
 ![https://github.com/liby/hexo-util-rs/actions](https://github.com/liby/hexo-util-rs/workflows/CI/badge.svg)
+[![NPM version](https://badge.fury.io/js/@sukka%2Fhexo-util-rs.svg)](https://www.npmjs.com/package/@sukka/hexo-util-rs)
 
 > Generated from [napi-rs/package-template](https://github.com/napi-rs/package-template)
 
+Utilities for Hexo.
+
 ⚠️ This project is in alpha stage. And there may some bugs existed.
 
-# Usage
 
-1. **Clone** this project.
-2. Run `yarn install` to install dependencies.
-3. After `yarn build/npm run` build command, you can see `hexo-util.[darwin|win32|linux].node` file in project root. This is the native addon built from [lib.rs](https://github.com/liby/hexo-util-rs/blob/main/src/lib.rs).
-4. Test With [ava](https://github.com/avajs/ava), run `yarn test/npm run test` to testing native addon. You can also switch to another testing framework if you want.
+## Installation
 
+``` bash
+$ npm install @sukka/hexo-util-rs
+// or
+$ yarn add @sukka/hexo-util-rs
+// or
+$ pnpm add @sukka/hexo-util-rs
+```
 
-## Support matrix
+## Usage
 
-|                  | node14 | node16 | node18 |
-| ---------------- | ------ | ------ | ------ |
-| Windows x64      | ✓      | ✓      | ✓      |
-| Windows x32      | ✓      | ✓      | ✓      |
-| Windows arm64    | ✓      | ✓      | ✓      |
-| macOS x64        | ✓      | ✓      | ✓      |
-| macOS arm64      | ✓      | ✓      | ✓      |
-| Linux x64 gnu    | ✓      | ✓      | ✓      |
-| Linux x64 musl   | ✓      | ✓      | ✓      |
-| Linux arm gnu    | ✓      | ✓      | ✓      |
-| Linux arm64 gnu  | ✓      | ✓      | ✓      |
-| Linux arm64 musl | ✓      | ✓      | ✓      |
-| Android arm64    | ✓      | ✓      | ✓      |
-| Android armv7    | ✓      | ✓      | ✓      |
-| FreeBSD x64      | ✓      | ✓      | ✓      |
+``` js
+const util = require('@sukka/hexo-util-rs');
+```
 
 ## Performance
 
@@ -321,3 +315,5 @@ Finished 2 cases!
 ```
 </details>
 
+## License
+[MIT](https://github.com/liby/hexo-util-rs/blob/main/LICENSE)
