@@ -5,6 +5,7 @@
 
 export function decodeUrl(url: string): string
 export function encodeUrl(url: string): string
+export function escapeDiacritic(input: string): string
 export function isExternalLink(url: string, sitehost: string, exclude?: string | Array<string> | undefined | null): boolean
 export interface Options {
   separator?: string

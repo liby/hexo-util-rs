@@ -1,8 +1,21 @@
 const Cache = require('./common/cache')
-const { isExternalLink: isExternalLinkRs, slugize, stripTags, encodeUrl, decodeUrl } = require('./utils')
+const {
+  decodeUrl,
+  encodeUrl,
+  escapeDiacritic,
+  isExternalLink: isExternalLinkRs,
+  slugize,
+  stripTags,
+} = require('./utils')
 
 const externalLinkCache = new Cache()
 const isInternalLink = (str) => !/^(\/\/|http(s)?:)/.test(str)
+
+module.exports.decodeUrl = function decode(str) {
+  if (isInternalLink(str)) return decodeURI(str)
+
+  return decodeUrl(str)
+}
 
 module.exports.isExternalLink = function isExternalLink(input, sitehost, exclude) {
   // Fast path: return false early for internal link
@@ -15,12 +28,7 @@ module.exports.isExternalLink = function isExternalLink(input, sitehost, exclude
   })
 }
 
-module.exports.decodeUrl = function decode(str) {
-  if (isInternalLink(str)) return decodeURI(str)
-
-  return decodeUrl(str)
-}
-
 module.exports.encodeUrl = encodeUrl
+module.exports.escapeDiacritic = escapeDiacritic
 module.exports.slugize = slugize
 module.exports.stripTags = stripTags

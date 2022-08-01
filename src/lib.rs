@@ -11,6 +11,7 @@ static ALLOC: mimalloc_rust::GlobalMiMalloc = mimalloc_rust::GlobalMiMalloc;
 
 mod decode_url;
 mod encode_url;
+mod escape_diacritic;
 mod is_external_link;
 mod slugize;
 mod strip_html;

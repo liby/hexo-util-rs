@@ -315,5 +315,30 @@ Finished 2 cases!
 ```
 </details>
 
+
+<details>
+<summary>Escape Diacritic</summary>
+
+```
+❯ yarn bench
+Running "default" suite...
+Progress: 50%
+
+  hexo-util-rs:
+    4 152 262 ops/s, ±1.20% 
+Progress: 100%
+
+  hexo-util-rs:
+    4 152 262 ops/s, ±1.20%   | fastest
+
+  hexo-util:
+    2 334 729 ops/s, ±1.62%   | slowest, 43.77% slower
+
+Finished 2 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+```
+</details>
+
 ## License
 [MIT](https://github.com/liby/hexo-util-rs/blob/main/LICENSE)
