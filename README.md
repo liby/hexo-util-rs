@@ -325,14 +325,14 @@ Running "default" suite...
 Progress: 50%
 
   hexo-util-rs:
-    3 005 326 ops/s, ±0.44% 
+    4 152 262 ops/s, ±1.20% 
 Progress: 100%
 
   hexo-util-rs:
-    3 005 326 ops/s, ±0.44%   | fastest
+    4 152 262 ops/s, ±1.20%   | fastest
 
   hexo-util:
-    2 670 111 ops/s, ±0.34%   | slowest, 11.15% slower
+    2 334 729 ops/s, ±1.62%   | slowest, 43.77% slower
 
 Finished 2 cases!
   Fastest: hexo-util-rs
