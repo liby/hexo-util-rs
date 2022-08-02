@@ -339,5 +339,65 @@ Finished 2 cases!
 ```
 </details>
 
+<details>
+<summary>Unescape HTML</summary>
+
+```
+❯ yarn bench
+Running "mini fixture" suite...
+Progress: 33%
+
+  hexo-util-rs-buffer:
+    996 155 ops/s, ±1.41% 
+Progress: 67%
+
+  hexo-util-rs-buffer:
+    996 155 ops/s, ±1.41% 
+
+  hexo-util-rs:
+    1 188 802 ops/s, ±0.36% 
+Progress: 100%
+
+  hexo-util-rs-buffer:
+    996 155 ops/s, ±1.41%     | 16.21% slower
+
+  hexo-util-rs:
+    1 188 802 ops/s, ±0.36%   | fastest
+
+  hexo-util:
+    677 794 ops/s, ±0.37%     | slowest, 42.99% slower
+
+Finished 3 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+Running "large fixture" suite...
+Progress: 33%
+
+  hexo-util-rs-buffer:
+    30 402 ops/s, ±0.64% 
+Progress: 67%
+
+  hexo-util-rs-buffer:
+    30 402 ops/s, ±0.64% 
+
+  hexo-util-rs:
+    27 585 ops/s, ±1.81% 
+Progress: 100%
+
+  hexo-util-rs-buffer:
+    30 402 ops/s, ±0.64%   | fastest
+
+  hexo-util-rs:
+    27 585 ops/s, ±1.81%   | 9.27% slower
+
+  hexo-util:
+    15 185 ops/s, ±0.58%   | slowest, 50.05% slower
+
+Finished 3 cases!
+  Fastest: hexo-util-rs-buffer
+  Slowest: hexo-util
+```
+</details>
+
 ## License
 [MIT](https://github.com/liby/hexo-util-rs/blob/main/LICENSE)

@@ -16,6 +16,7 @@ deunicode = "1"
 url = "2"
 percent-encoding = "2"
 idna = "0.2"
+html-escape = "0.2.11"
 
 [target.'cfg(not(target_os = "linux"))'.dependencies]
 mimalloc-rust = { version = "0.2" }

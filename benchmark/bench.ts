@@ -7,6 +7,7 @@ import { benchEscapeDiacritic } from './escape_diacritic'
 import { benchIsExternalLink } from './is_external_link'
 import { benchSlugize } from './slugize'
 import { benchStripTags } from './strip_html'
+import { benchUnescapeHtml } from './unescape_html'
 
 // For fairness, caching in both implementations is not used.
 // @ts-expect-error missing Cache definition in @types/hexo-util
@@ -18,6 +19,7 @@ benchStripTags()
   .then(benchEncodeUrl)
   .then(benchDecodeUrl)
   .then(benchEscapeDiacritic)
+  .then(benchUnescapeHtml)
   .catch((e) => {
     console.error(e)
   })

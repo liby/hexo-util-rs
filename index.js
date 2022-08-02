@@ -6,6 +6,7 @@ const {
   isExternalLink: isExternalLinkRs,
   slugize,
   stripTags,
+  unescapeHtml,
 } = require('./utils')
 
 const externalLinkCache = new Cache()
@@ -32,3 +33,4 @@ module.exports.encodeUrl = encodeUrl
 module.exports.escapeDiacritic = escapeDiacritic
 module.exports.slugize = slugize
 module.exports.stripTags = stripTags
+module.exports.unescapeHtml = unescapeHtml
