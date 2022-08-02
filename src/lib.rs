@@ -15,3 +15,4 @@ mod escape_diacritic;
 mod is_external_link;
 mod slugize;
 mod strip_html;
+mod unescape_html;

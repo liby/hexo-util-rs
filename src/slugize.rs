@@ -7,7 +7,7 @@ pub struct Options {
   pub transform: Option<u8>,
 }
 
-trait IntoString {
+pub trait IntoString {
   fn to_string(&self) -> Result<String>;
 }
 
