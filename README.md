@@ -1,14 +1,13 @@
-# `@napi-rs/hexo-util`
+# `@napi-rs/hexo-util` · [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![https://github.com/liby/hexo-util-rs/actions](https://github.com/liby/hexo-util-rs/workflows/CI/badge.svg)](https://github.com/liby/hexo-util-rs/actions) [![NPM version](https://badge.fury.io/js/@sukka%2Fhexo-util-rs.svg)](https://www.npmjs.com/package/@sukka/hexo-util-rs)
 
-![https://github.com/liby/hexo-util-rs/actions](https://github.com/liby/hexo-util-rs/workflows/CI/badge.svg)
-[![NPM version](https://badge.fury.io/js/@sukka%2Fhexo-util-rs.svg)](https://www.npmjs.com/package/@sukka/hexo-util-rs)
+> **Note**
+> 
+> Utilities for Hexo.
+> Generated from [napi-rs/package-template](https://github.com/napi-rs/package-template).
 
-> Generated from [napi-rs/package-template](https://github.com/napi-rs/package-template)
-
-Utilities for Hexo.
-
-⚠️ This project is in alpha stage. And there may some bugs existed.
-
+> **Warning**
+> 
+> This project is in alpha stage. And there may some bugs existed.
 
 ## Installation
 
@@ -37,7 +36,7 @@ Kernel Version: Darwin 21.5.0
 Processor Name: 8-Core Intel Core i9
 Processor Speed: 2.3 GHz
 L2 Cache (per Core): 256 KB
-L3 Cache: 16 MB
+L3 Cache: 16 MB![img.png](img.png)
 Memory: 32 GB
 ```
 
