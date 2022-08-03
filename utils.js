@@ -218,11 +218,13 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { decodeUrl, encodeUrl, escapeDiacritic, isExternalLink, slugize, stripTags, unescapeHtml } = nativeBinding
+const { decodeUrl, encodeUrl, escapeDiacritic, escapeHtml, isExternalLink, slugize, stripTags, unescapeHtml } =
+  nativeBinding
 
 module.exports.decodeUrl = decodeUrl
 module.exports.encodeUrl = encodeUrl
 module.exports.escapeDiacritic = escapeDiacritic
+module.exports.escapeHtml = escapeHtml
 module.exports.isExternalLink = isExternalLink
 module.exports.slugize = slugize
 module.exports.stripTags = stripTags

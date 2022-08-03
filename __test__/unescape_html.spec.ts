@@ -18,5 +18,5 @@ test('buffer', (t) => {
 
 test('arg must be a string', (t) => {
   // @ts-expect-error
-  t.throws(() => escapeDiacritic())
+  t.throws(() => unescapeHtml())
 })
