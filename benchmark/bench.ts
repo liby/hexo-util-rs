@@ -4,6 +4,7 @@ import { Cache } from 'hexo-util'
 import { benchDecodeUrl } from './decode_url'
 import { benchEncodeUrl } from './encode_url'
 import { benchEscapeDiacritic } from './escape_diacritic'
+import { benchEscapeHtml } from './escape_html'
 import { benchIsExternalLink } from './is_external_link'
 import { benchSlugize } from './slugize'
 import { benchStripTags } from './strip_html'
@@ -20,6 +21,7 @@ benchStripTags()
   .then(benchDecodeUrl)
   .then(benchEscapeDiacritic)
   .then(benchUnescapeHtml)
+  .then(benchEscapeHtml)
   .catch((e) => {
     console.error(e)
   })

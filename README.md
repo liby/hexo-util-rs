@@ -399,5 +399,65 @@ Finished 3 cases!
 ```
 </details>
 
+<details>
+<summary>Escape HTML</summary>
+
+```
+❯ yarn bench
+Running "mini fixture" suite...
+Progress: 33%
+
+  hexo-util-rs-buffer:
+    1 406 688 ops/s, ±2.06% 
+Progress: 67%
+
+  hexo-util-rs-buffer:
+    1 406 688 ops/s, ±2.06% 
+
+  hexo-util-rs:
+    2 013 858 ops/s, ±0.73% 
+Progress: 100%
+
+  hexo-util-rs-buffer:
+    1 406 688 ops/s, ±2.06%   | 30.15% slower
+
+  hexo-util-rs:
+    2 013 858 ops/s, ±0.73%   | fastest
+
+  hexo-util:
+    954 610 ops/s, ±0.40%     | slowest, 52.6% slower
+
+Finished 3 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+Running "large fixture" suite...
+Progress: 33%
+
+  hexo-util-rs-buffer:
+    101 859 ops/s, ±1.56% 
+Progress: 67%
+
+  hexo-util-rs-buffer:
+    101 859 ops/s, ±1.56% 
+
+  hexo-util-rs:
+    96 883 ops/s, ±2.48% 
+Progress: 100%
+
+  hexo-util-rs-buffer:
+    101 859 ops/s, ±1.56%   | fastest
+
+  hexo-util-rs:
+    96 883 ops/s, ±2.48%    | 4.89% slower
+
+  hexo-util:
+    32 949 ops/s, ±1.36%    | slowest, 67.65% slower
+
+Finished 3 cases!
+  Fastest: hexo-util-rs-buffer
+  Slowest: hexo-util
+```
+</details>
+
 ## License
 [MIT](https://github.com/liby/hexo-util-rs/blob/main/LICENSE)

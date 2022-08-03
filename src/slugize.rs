@@ -1,3 +1,4 @@
+use crate::traits::IntoString;
 use deunicode::deunicode_char;
 use napi::bindgen_prelude::*;
 
@@ -7,38 +8,11 @@ pub struct Options {
   pub transform: Option<u8>,
 }
 
-pub trait IntoString {
-  fn to_string(&self) -> Result<String>;
-}
-
-impl IntoString for Either3<Buffer, String, Unknown> {
-  fn to_string(&self) -> Result<String> {
-    match self {
-      Either3::A(b) => match std::str::from_utf8(b) {
-        Ok(s) => Ok(s.to_owned()),
-        Err(_) => Err(Error::new(
-          Status::InvalidArg,
-          "input html is not valid utf8 string".to_owned(),
-        )),
-      },
-      Either3::B(s) => Ok(s.to_owned()),
-      _ => Ok("".to_owned()),
-    }
-  }
-}
-
 #[napi]
 pub fn slugize(
   #[napi(ts_arg_type = "Buffer | string")] str: Either3<Buffer, String, Unknown>,
   options: Option<Options>,
 ) -> Result<String> {
-  if let Either3::C(_) = str {
-    return Err(Error::new(
-      Status::InvalidArg,
-      "input html should be either Buffer or String".to_owned(),
-    ));
-  }
-
   let options = options.unwrap_or_else(|| Options {
     separator: Some("-".to_owned()),
     transform: None,
@@ -51,7 +25,7 @@ pub fn slugize(
   };
 
   Ok(slugify(
-    &str.to_string().unwrap(),
+    &str.to_string()?,
     &options.separator.unwrap_or_else(|| "-".to_owned()),
     transform,
   ))
