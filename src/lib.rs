@@ -13,6 +13,7 @@ mod decode_url;
 mod encode_url;
 mod escape_diacritic;
 mod escape_html;
+mod escape_regexp;
 mod is_external_link;
 mod slugize;
 mod strip_html;

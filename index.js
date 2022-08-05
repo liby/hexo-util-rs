@@ -4,6 +4,7 @@ const {
   encodeUrl,
   escapeDiacritic,
   escapeHtml,
+  escapeRegExp,
   isExternalLink: isExternalLinkRs,
   slugize,
   stripTags,
@@ -33,6 +34,7 @@ module.exports.isExternalLink = function isExternalLink(input, sitehost, exclude
 module.exports.encodeUrl = encodeUrl
 module.exports.escapeDiacritic = escapeDiacritic
 module.exports.escapeHtml = escapeHtml
+module.exports.escapeRegExp = escapeRegExp
 module.exports.slugize = slugize
 module.exports.stripTags = stripTags
 module.exports.unescapeHtml = unescapeHtml

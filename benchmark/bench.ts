@@ -5,6 +5,7 @@ import { benchDecodeUrl } from './decode_url'
 import { benchEncodeUrl } from './encode_url'
 import { benchEscapeDiacritic } from './escape_diacritic'
 import { benchEscapeHtml } from './escape_html'
+import { benchEscapeRegExp } from './escape_regexp'
 import { benchIsExternalLink } from './is_external_link'
 import { benchSlugize } from './slugize'
 import { benchStripTags } from './strip_html'
@@ -22,6 +23,7 @@ benchStripTags()
   .then(benchEscapeDiacritic)
   .then(benchUnescapeHtml)
   .then(benchEscapeHtml)
+  .then(benchEscapeRegExp)
   .catch((e) => {
     console.error(e)
   })

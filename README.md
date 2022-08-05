@@ -459,5 +459,25 @@ Finished 3 cases!
 ```
 </details>
 
+<details>
+<summary>Escape RegExp</summary>
+
+```
+❯ yarn bench
+Running "default" suite...
+Progress: 50%
+  hexo-util-rs:
+    4 833 899 ops/s, ±0.47% 
+Progress: 100%
+  hexo-util-rs:
+    4 833 899 ops/s, ±0.47%   | fastest
+  hexo-util:
+    3 128 195 ops/s, ±1.36%   | slowest, 35.29% slower
+Finished 2 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+```
+</details>
+
 ## License
 [MIT](https://github.com/liby/hexo-util-rs/blob/main/LICENSE)
