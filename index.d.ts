@@ -9,6 +9,11 @@ export function escapeDiacritic(input: string): string
 export function escapeHtml(input: Buffer | string): string
 export function escapeRegExp(input: string): string
 export function isExternalLink(url: string, sitehost: string, exclude?: string | Array<string> | undefined | null): boolean
+export interface PrettyUrlsOptions {
+  trailing_index?: boolean
+  trailing_html?: boolean
+}
+export function prettyUrls(url: string, options?: PrettyUrlsOptions | undefined | null): string
 export interface Options {
   separator?: string
   transform?: number

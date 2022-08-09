@@ -6,6 +6,7 @@ const {
   escapeHtml,
   escapeRegExp,
   isExternalLink: isExternalLinkRs,
+  prettyUrls,
   slugize,
   stripTags,
   unescapeHtml,
@@ -35,6 +36,7 @@ module.exports.encodeUrl = encodeUrl
 module.exports.escapeDiacritic = escapeDiacritic
 module.exports.escapeHtml = escapeHtml
 module.exports.escapeRegExp = escapeRegExp
+module.exports.prettyUrls = prettyUrls
 module.exports.slugize = slugize
 module.exports.stripTags = stripTags
 module.exports.unescapeHtml = unescapeHtml
