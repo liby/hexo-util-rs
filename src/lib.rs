@@ -15,6 +15,7 @@ mod escape_diacritic;
 mod escape_html;
 mod escape_regexp;
 mod is_external_link;
+mod pretty_urls;
 mod slugize;
 mod strip_html;
 mod traits;
