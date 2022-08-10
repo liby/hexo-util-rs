@@ -8,7 +8,7 @@ import { escapeHtml } from '../index'
 
 const miniFixture = '&lt;foo>bar</foo&gt;'
 const miniFixtureBuffer = Buffer.from(miniFixture)
-const largeFixtureBuffer = fs.readFileSync(pathJoin(__dirname, './fixture/escape_html'))
+const largeFixtureBuffer = fs.readFileSync(pathJoin(__dirname, './fixture/escape_html.txt'))
 const largeFixture = largeFixtureBuffer.toString('utf8')
 
 export async function benchEscapeHtml() {

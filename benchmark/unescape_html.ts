@@ -9,7 +9,7 @@ import { unescapeHtml } from '../index'
 
 const miniFixture = '&lt;p class&#x3D;&quot;foo&quot;&gt;Hello &quot;world&quot;.&lt;&#x2F;p&gt;'
 const miniFixtureBuffer = Buffer.from(miniFixture)
-const largeFixtureBuffer = fs.readFileSync(pathJoin(__dirname, './fixture/unescape_html'))
+const largeFixtureBuffer = fs.readFileSync(pathJoin(__dirname, './fixture/unescape_html.txt'))
 const largeFixture = largeFixtureBuffer.toString('utf8')
 
 export async function benchUnescapeHtml() {
