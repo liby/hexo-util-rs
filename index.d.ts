@@ -16,3 +16,7 @@ export interface Options {
 export function slugize(str: Buffer | string, options?: Options | undefined | null): string
 export function stripTags(htmlContent: Buffer | string): string
 export function unescapeHtml(input: Buffer | string): string
+export interface WordWrapOptions {
+  width: number
+}
+export function wordWrap(input: string, options?: WordWrapOptions | undefined | null): string

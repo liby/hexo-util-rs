@@ -18,6 +18,7 @@ percent-encoding = "2"
 idna = "0.2"
 html-escape = "0.2.11"
 regex = "1.6.0"
+textwrap = "0.15.0"
 
 [target.'cfg(not(target_os = "linux"))'.dependencies]
 mimalloc-rust = { version = "0.2" }

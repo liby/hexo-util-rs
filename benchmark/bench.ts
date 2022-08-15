@@ -24,6 +24,7 @@ benchStripTags()
   .then(benchUnescapeHtml)
   .then(benchEscapeHtml)
   .then(benchEscapeRegExp)
+  .then(benchStripTags)
   .catch((e) => {
     console.error(e)
   })

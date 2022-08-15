@@ -19,3 +19,4 @@ mod slugize;
 mod strip_html;
 mod traits;
 mod unescape_html;
+mod word_wrap;

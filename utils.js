@@ -225,9 +225,10 @@ const {
   escapeHtml,
   escapeRegExp,
   isExternalLink,
-  unescapeHtml,
   slugize,
   stripTags,
+  unescapeHtml,
+  wordWrap,
 } = nativeBinding
 
 module.exports.decodeUrl = decodeUrl
@@ -239,3 +240,4 @@ module.exports.isExternalLink = isExternalLink
 module.exports.slugize = slugize
 module.exports.stripTags = stripTags
 module.exports.unescapeHtml = unescapeHtml
+module.exports.wordWrap = wordWrap
