@@ -2,6 +2,7 @@ use std::borrow::Cow;
 use std::ops::Range;
 
 use idna::domain_to_unicode;
+use napi::bindgen_prelude::Either16::P;
 use percent_encoding::{percent_decode_str, percent_encode, AsciiSet};
 use url::{ParseError, Url};
 
@@ -83,12 +84,18 @@ fn encode_url_impl(input: &str) -> String {
   };
   if is_relative {
     let mut str = String::from(url);
-    if input.as_bytes()[0] == b'/' {
-      // Strip "http://."
-      str.drain(..8);
-    } else {
-      // An unnecessary leading slash was added to the URL during parsing.
-      str.drain(..9);
+    match input.as_bytes()[0] {
+      b'/' => {
+        // Strip "http://."
+        str.drain(..8);
+      }
+      b'.' => {
+        str = input.to_string();
+      }
+      _ => {
+        // An unnecessary leading slash was added to the URL during parsing.
+        str.drain(..9);
+      }
     }
     return str;
   }

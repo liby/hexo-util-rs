@@ -9,6 +9,7 @@ export function escapeDiacritic(input: string): string
 export function escapeHtml(input: Buffer | string): string
 export function escapeRegExp(input: string): string
 export function isExternalLink(url: string, sitehost: string, exclude?: string | Array<string> | undefined | null): boolean
+export function relativeUrl(from: string, to: string): string
 export interface Options {
   separator?: string
   transform?: number

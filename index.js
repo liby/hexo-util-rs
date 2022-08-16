@@ -9,6 +9,7 @@ const {
   slugize,
   stripTags,
   unescapeHtml,
+  relativeUrl,
 } = require('./utils')
 
 const externalLinkCache = new Cache()
@@ -38,3 +39,4 @@ module.exports.escapeRegExp = escapeRegExp
 module.exports.slugize = slugize
 module.exports.stripTags = stripTags
 module.exports.unescapeHtml = unescapeHtml
+module.exports.relativeUrl = relativeUrl
