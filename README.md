@@ -1,17 +1,17 @@
 # `@napi-rs/hexo-util` · [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![https://github.com/liby/hexo-util-rs/actions](https://github.com/liby/hexo-util-rs/workflows/CI/badge.svg)](https://github.com/liby/hexo-util-rs/actions) [![NPM version](https://badge.fury.io/js/@sukka%2Fhexo-util-rs.svg)](https://www.npmjs.com/package/@sukka/hexo-util-rs)
 
 > **Note**
-> 
+>
 > Utilities for Hexo.
 > Generated from [napi-rs/package-template](https://github.com/napi-rs/package-template).
 
 > **Warning**
-> 
+>
 > This project is in alpha stage. And there may some bugs existed.
 
 ## Installation
 
-``` bash
+```bash
 $ npm install @sukka/hexo-util-rs
 // or
 $ yarn add @sukka/hexo-util-rs
@@ -21,8 +21,8 @@ $ pnpm add @sukka/hexo-util-rs
 
 ## Usage
 
-``` js
-const util = require('@sukka/hexo-util-rs');
+```js
+const util = require('@sukka/hexo-util-rs')
 ```
 
 ## Performance
@@ -30,6 +30,7 @@ const util = require('@sukka/hexo-util-rs');
 See [benchmark](https://github.com/liby/hexo-util-rs/tree/main/benchmark) for benchmark code.
 
 Hardware info:
+
 ```
 System Version: macOS 12.4 (21F79)
 Kernel Version: Darwin 21.5.0
@@ -90,8 +91,8 @@ Finished 5 cases!
   Fastest: hexo-util-rs-buffer
   Slowest: string-strip-html
 ```
-</details>
 
+</details>
 
 <details>
 <summary>Slugify</summary>
@@ -111,8 +112,8 @@ Finished 2 cases!
   Fastest: hexo-util-rs
   Slowest: hexo-util
 ```
-</details>
 
+</details>
 
 <details>
 <summary>isExternalLink</summary>
@@ -123,7 +124,7 @@ Running "Internal absolute url" suite...
 Progress: 50%
 
   hexo-util-rs:
-    1 038 833 ops/s, ±0.37% 
+    1 038 833 ops/s, ±0.37%
 Progress: 100%
 
   hexo-util-rs:
@@ -139,7 +140,7 @@ Running "External absolute url" suite...
 Progress: 50%
 
   hexo-util-rs:
-    953 787 ops/s, ±0.41% 
+    953 787 ops/s, ±0.41%
 Progress: 100%
 
   hexo-util-rs:
@@ -155,7 +156,7 @@ Running "Relative absolute url" suite...
 Progress: 50%
 
   hexo-util-rs:
-    42 956 520 ops/s, ±0.87% 
+    42 956 520 ops/s, ±0.87%
 Progress: 100%
 
   hexo-util-rs:
@@ -168,6 +169,7 @@ Finished 2 cases!
   Fastest: hexo-util-rs
   Slowest: hexo-util
 ```
+
 </details>
 
 <details>
@@ -179,7 +181,7 @@ Running "Encode URL - auth" suite...
 Progress: 50%
 
   hexo-util-rs:
-    1 299 520 ops/s, ±0.86% 
+    1 299 520 ops/s, ±0.86%
 Progress: 100%
 
   hexo-util-rs:
@@ -195,7 +197,7 @@ Running "Encode URL - Internationalized domain name" suite...
 Progress: 50%
 
   hexo-util-rs:
-    599 196 ops/s, ±0.87% 
+    599 196 ops/s, ±0.87%
 Progress: 100%
 
   hexo-util-rs:
@@ -211,7 +213,7 @@ Running "Encode URL - path with unicode" suite...
 Progress: 50%
 
   hexo-util-rs:
-    1 348 834 ops/s, ±1.38% 
+    1 348 834 ops/s, ±1.38%
 Progress: 100%
 
   hexo-util-rs:
@@ -224,6 +226,7 @@ Finished 2 cases!
   Fastest: hexo-util-rs
   Slowest: hexo-util
 ```
+
 </details>
 
 <details>
@@ -235,7 +238,7 @@ Running "Decode URL - regular" suite...
 Progress: 50%
 
   hexo-util-rs:
-    1 632 744 ops/s, ±0.75% 
+    1 632 744 ops/s, ±0.75%
 Progress: 100%
 
   hexo-util-rs:
@@ -251,7 +254,7 @@ Running "Decode URL - path with space" suite...
 Progress: 50%
 
   hexo-util-rs:
-    2 630 212 ops/s, ±1.67% 
+    2 630 212 ops/s, ±1.67%
 Progress: 100%
 
   hexo-util-rs:
@@ -267,7 +270,7 @@ Running "Decode URL - space" suite...
 Progress: 50%
 
   hexo-util-rs:
-    1 228 376 ops/s, ±6.64% 
+    1 228 376 ops/s, ±6.64%
 Progress: 100%
 
   hexo-util-rs:
@@ -283,7 +286,7 @@ Running "Decode URL - hash and query" suite...
 Progress: 50%
 
   hexo-util-rs:
-    781 550 ops/s, ±1.90% 
+    781 550 ops/s, ±1.90%
 Progress: 100%
 
   hexo-util-rs:
@@ -299,7 +302,7 @@ Running "Decode URL - Internationalized domain name" suite...
 Progress: 50%
 
   hexo-util-rs:
-    492 862 ops/s, ±6.49% 
+    492 862 ops/s, ±6.49%
 Progress: 100%
 
   hexo-util-rs:
@@ -312,8 +315,8 @@ Finished 2 cases!
   Fastest: hexo-util-rs
   Slowest: hexo-util
 ```
-</details>
 
+</details>
 
 <details>
 <summary>Escape Diacritic</summary>
@@ -324,7 +327,7 @@ Running "default" suite...
 Progress: 50%
 
   hexo-util-rs:
-    4 152 262 ops/s, ±1.20% 
+    4 152 262 ops/s, ±1.20%
 Progress: 100%
 
   hexo-util-rs:
@@ -337,6 +340,7 @@ Finished 2 cases!
   Fastest: hexo-util-rs
   Slowest: hexo-util
 ```
+
 </details>
 
 <details>
@@ -348,14 +352,14 @@ Running "mini fixture" suite...
 Progress: 33%
 
   hexo-util-rs-buffer:
-    996 155 ops/s, ±1.41% 
+    996 155 ops/s, ±1.41%
 Progress: 67%
 
   hexo-util-rs-buffer:
-    996 155 ops/s, ±1.41% 
+    996 155 ops/s, ±1.41%
 
   hexo-util-rs:
-    1 188 802 ops/s, ±0.36% 
+    1 188 802 ops/s, ±0.36%
 Progress: 100%
 
   hexo-util-rs-buffer:
@@ -374,14 +378,14 @@ Running "large fixture" suite...
 Progress: 33%
 
   hexo-util-rs-buffer:
-    30 402 ops/s, ±0.64% 
+    30 402 ops/s, ±0.64%
 Progress: 67%
 
   hexo-util-rs-buffer:
-    30 402 ops/s, ±0.64% 
+    30 402 ops/s, ±0.64%
 
   hexo-util-rs:
-    27 585 ops/s, ±1.81% 
+    27 585 ops/s, ±1.81%
 Progress: 100%
 
   hexo-util-rs-buffer:
@@ -397,6 +401,7 @@ Finished 3 cases!
   Fastest: hexo-util-rs-buffer
   Slowest: hexo-util
 ```
+
 </details>
 
 <details>
@@ -408,14 +413,14 @@ Running "mini fixture" suite...
 Progress: 33%
 
   hexo-util-rs-buffer:
-    1 406 688 ops/s, ±2.06% 
+    1 406 688 ops/s, ±2.06%
 Progress: 67%
 
   hexo-util-rs-buffer:
-    1 406 688 ops/s, ±2.06% 
+    1 406 688 ops/s, ±2.06%
 
   hexo-util-rs:
-    2 013 858 ops/s, ±0.73% 
+    2 013 858 ops/s, ±0.73%
 Progress: 100%
 
   hexo-util-rs-buffer:
@@ -434,14 +439,14 @@ Running "large fixture" suite...
 Progress: 33%
 
   hexo-util-rs-buffer:
-    101 859 ops/s, ±1.56% 
+    101 859 ops/s, ±1.56%
 Progress: 67%
 
   hexo-util-rs-buffer:
-    101 859 ops/s, ±1.56% 
+    101 859 ops/s, ±1.56%
 
   hexo-util-rs:
-    96 883 ops/s, ±2.48% 
+    96 883 ops/s, ±2.48%
 Progress: 100%
 
   hexo-util-rs-buffer:
@@ -457,6 +462,7 @@ Finished 3 cases!
   Fastest: hexo-util-rs-buffer
   Slowest: hexo-util
 ```
+
 </details>
 
 <details>
@@ -467,7 +473,7 @@ Finished 3 cases!
 Running "default" suite...
 Progress: 50%
   hexo-util-rs:
-    4 833 899 ops/s, ±0.47% 
+    4 833 899 ops/s, ±0.47%
 Progress: 100%
   hexo-util-rs:
     4 833 899 ops/s, ±0.47%   | fastest
@@ -477,7 +483,9 @@ Finished 2 cases!
   Fastest: hexo-util-rs
   Slowest: hexo-util
 ```
+
 </details>
 
 ## License
+
 [MIT](https://github.com/liby/hexo-util-rs/blob/main/LICENSE)

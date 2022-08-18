@@ -1,3 +1,5 @@
+const { unescape } = require('querystring')
+
 const Cache = require('./common/cache')
 const {
   decodeUrl,
@@ -12,7 +14,7 @@ const {
 } = require('./utils')
 
 const externalLinkCache = new Cache()
-const isInternalLink = (str) => !/^(\/\/|http(s)?:)/.test(str)
+const isInternalLink = (str) => !/^(\/\/|http(s)?|data:)/.test(str)
 
 module.exports.decodeUrl = function decode(str) {
   if (isInternalLink(str)) return decodeURI(str)
@@ -31,10 +33,20 @@ module.exports.isExternalLink = function isExternalLink(input, sitehost, exclude
   })
 }
 
-module.exports.encodeUrl = encodeUrl
+module.exports.encodeUrl = function encode(str) {
+  if (isInternalLink(str)) return encodeURI(unescape(str))
+
+  return encodeUrl(str)
+}
 module.exports.escapeDiacritic = escapeDiacritic
 module.exports.escapeHtml = escapeHtml
 module.exports.escapeRegExp = escapeRegExp
 module.exports.slugize = slugize
 module.exports.stripTags = stripTags
 module.exports.unescapeHtml = unescapeHtml
+
+module.exports.Cache = Cache
+module.exports.prettyUrls = require('./common/pretty_urls')
+module.exports.wordWrap = require('./common/word_wrap')
+module.exports.relativeUrl = require('./common/relative_url')
+module.exports.truncate = require('./common/truncate')

@@ -1,2 +1,4 @@
 target
 .yarn
+benchmark/fixture/**
+npm

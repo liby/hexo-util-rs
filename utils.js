@@ -225,9 +225,9 @@ const {
   escapeHtml,
   escapeRegExp,
   isExternalLink,
-  unescapeHtml,
   slugize,
   stripTags,
+  unescapeHtml,
 } = nativeBinding
 
 module.exports.decodeUrl = decodeUrl
