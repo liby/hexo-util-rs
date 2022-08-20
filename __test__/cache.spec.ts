@@ -1,6 +1,5 @@
 import test from 'ava'
 
-// @ts-expect-error missing Cache definition in @types/hexo-util-rs
 import { Cache } from '../index'
 
 const cache = new Cache()
@@ -37,14 +36,14 @@ test('apply - function', (t) => {
   )
 })
 
-// test('dump', (t) => {
-//   t.is(cache.dump(), {
-//     bar: 123,
-//     baz: 123,
-//     foo: 123,
-//     foobar: 456,
-//   })
-// })
+test('dump', (t) => {
+  t.deepEqual(cache.dump(), {
+    bar: 123,
+    baz: 123,
+    foo: 123,
+    foobar: 456,
+  })
+})
 
 test('del', (t) => {
   cache.del('baz')

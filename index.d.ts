@@ -25,3 +25,23 @@ export function truncate(
     separator?: string
   },
 ): string
+
+export class Cache {
+  private readonly cache: Map<string, any>
+
+  set(id: string, value: any): Map<string, any>
+
+  has(id: string): boolean
+
+  get(id: string): any
+
+  del(id: string): boolean
+
+  apply(id: string, value: any): any
+
+  flush(): void
+
+  size(): number
+
+  dump(): { [p: string]: any }
+}
