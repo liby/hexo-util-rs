@@ -9,6 +9,7 @@ import { benchEscapeRegExp } from './escape_regexp'
 import { benchIsExternalLink } from './is_external_link'
 import { benchSlugize } from './slugize'
 import { benchStripTags } from './strip_html'
+import { benchTocObj } from './toc_obj'
 import { benchUnescapeHtml } from './unescape_html'
 
 // For fairness, caching in both implementations is not used.
@@ -24,6 +25,7 @@ benchStripTags()
   .then(benchUnescapeHtml)
   .then(benchEscapeHtml)
   .then(benchEscapeRegExp)
+  .then(benchTocObj)
   .catch((e) => {
     console.error(e)
   })

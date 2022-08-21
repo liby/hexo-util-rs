@@ -1,6 +1,8 @@
+#![feature(test)]
 #![deny(clippy::all)]
 #[macro_use]
 extern crate napi_derive;
+extern crate test;
 
 #[cfg(all(
   not(all(target_os = "linux", target_env = "musl", target_arch = "aarch64")),
@@ -17,5 +19,6 @@ mod escape_regexp;
 mod is_external_link;
 mod slugize;
 mod strip_html;
+mod toc_obj;
 mod traits;
 mod unescape_html;

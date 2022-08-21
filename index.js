@@ -10,6 +10,7 @@ const {
   isExternalLink: isExternalLinkRs,
   slugize,
   stripTags,
+  tocObj,
   unescapeHtml,
 } = require('./utils')
 
@@ -43,6 +44,7 @@ module.exports.escapeHtml = escapeHtml
 module.exports.escapeRegExp = escapeRegExp
 module.exports.slugize = slugize
 module.exports.stripTags = stripTags
+module.exports.tocObj = tocObj
 module.exports.unescapeHtml = unescapeHtml
 
 module.exports.Cache = Cache

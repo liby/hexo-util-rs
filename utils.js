@@ -227,6 +227,7 @@ const {
   isExternalLink,
   slugize,
   stripTags,
+  tocObj,
   unescapeHtml,
 } = nativeBinding
 
@@ -238,4 +239,5 @@ module.exports.escapeRegExp = escapeRegExp
 module.exports.isExternalLink = isExternalLink
 module.exports.slugize = slugize
 module.exports.stripTags = stripTags
+module.exports.tocObj = tocObj
 module.exports.unescapeHtml = unescapeHtml
