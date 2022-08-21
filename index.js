@@ -47,7 +47,8 @@ module.exports.unescapeHtml = unescapeHtml
 
 module.exports.Cache = Cache
 module.exports.CacheStream = require('./common/cache_stream')
+module.exports.camelCaseKeys = require('./common/camel_case_keys')
 module.exports.prettyUrls = require('./common/pretty_urls')
-module.exports.wordWrap = require('./common/word_wrap')
 module.exports.relativeUrl = require('./common/relative_url')
 module.exports.truncate = require('./common/truncate')
+module.exports.wordWrap = require('./common/word_wrap')

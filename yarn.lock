@@ -121,6 +121,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.27.1
     ava: ^4.3.0
     benny: ^3.7.1
+    camel-case: ^4.1.2
     chalk: ^5.0.1
     eslint: ^8.17.0
     eslint-config-prettier: ^8.5.0
@@ -948,7 +949,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"camel-case@npm:^4.0.0":
+"camel-case@npm:^4.0.0, camel-case@npm:^4.1.2":
   version: 4.1.2
   resolution: "camel-case@npm:4.1.2"
   dependencies:

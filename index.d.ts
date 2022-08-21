@@ -2,36 +2,10 @@ import { Transform, TransformCallback } from 'stream'
 
 export * from './utils'
 
-export function wordWrap(
-  str: string,
-  options?: {
-    width: number
-  },
-): string
-
-export function relativeUrl(from?: string, to?: string): string
-
-export function prettyUrls(
-  url: string,
-  options?: {
-    trailing_index?: boolean
-    trailing_html?: boolean
-  },
-): string
-
-export function truncate(
-  url: string,
-  options?: {
-    length?: number
-    omission?: string
-    separator?: string
-  },
-): string
-
 export class Cache {
-  private readonly cache: Map<string, any>
+  private readonly cache: Map<string, unknown>
 
-  set(id: string, value: any): Map<string, any>
+  set(id: string, value: any): Map<string, unknown>
 
   has(id: string): boolean
 
@@ -39,13 +13,13 @@ export class Cache {
 
   del(id: string): boolean
 
-  apply(id: string, value: any): any
+  apply(id: string, value: unknown): unknown
 
   flush(): void
 
   size(): number
 
-  dump(): { [p: string]: any }
+  dump(): { [p: string]: unknown }
 }
 
 export class CacheStream extends Transform {
@@ -57,3 +31,31 @@ export class CacheStream extends Transform {
 
   getCache(): Buffer
 }
+
+export function camelCaseKeys(obj: Record<string, unknown>): Record<string, unknown>
+
+export function prettyUrls(
+  url: string,
+  options?: {
+    trailing_index?: boolean
+    trailing_html?: boolean
+  },
+): string
+
+export function relativeUrl(from?: string, to?: string): string
+
+export function truncate(
+  url: string,
+  options?: {
+    length?: number
+    omission?: string
+    separator?: string
+  },
+): string
+
+export function wordWrap(
+  str: string,
+  options?: {
+    width: number
+  },
+): string
