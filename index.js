@@ -47,6 +47,7 @@ module.exports.unescapeHtml = unescapeHtml
 
 module.exports.Cache = Cache
 module.exports.CacheStream = require('./common/cache_stream')
+module.exports.Color = require('./common/color')
 module.exports.camelCaseKeys = require('./common/camel_case_keys')
 module.exports.prettyUrls = require('./common/pretty_urls')
 module.exports.relativeUrl = require('./common/relative_url')

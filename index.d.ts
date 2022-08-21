@@ -32,6 +32,16 @@ export class CacheStream extends Transform {
   getCache(): Buffer
 }
 
+export class Color {
+  constructor(color: string | { r: number; g: number; b: number; a: number })
+
+  _parse(color: string): void
+
+  toString(): `#${number}${number}${number}` | `rgba(${number}, ${number}, ${number}, ${number})`
+
+  mix(color: this | string | { r: number; g: number; b: number; a: number }, ratio: number): this
+}
+
 export function camelCaseKeys(obj: Record<string, unknown>): Record<string, unknown>
 
 export function prettyUrls(
