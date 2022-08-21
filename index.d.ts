@@ -1,3 +1,5 @@
+import { Transform, TransformCallback } from 'stream'
+
 export * from './utils'
 
 export function wordWrap(
@@ -44,4 +46,14 @@ export class Cache {
   size(): number
 
   dump(): { [p: string]: any }
+}
+
+export class CacheStream extends Transform {
+  _transform(
+    chunk: Buffer | WithImplicitCoercion<string> | { [Symbol.toPrimitive]: (hint: 'string') => string },
+    enc: BufferEncoding,
+    callback: TransformCallback,
+  ): void
+
+  getCache(): Buffer
 }

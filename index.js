@@ -46,6 +46,7 @@ module.exports.stripTags = stripTags
 module.exports.unescapeHtml = unescapeHtml
 
 module.exports.Cache = Cache
+module.exports.CacheStream = require('./common/cache_stream')
 module.exports.prettyUrls = require('./common/pretty_urls')
 module.exports.wordWrap = require('./common/word_wrap')
 module.exports.relativeUrl = require('./common/relative_url')
