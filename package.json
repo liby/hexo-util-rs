@@ -111,7 +111,7 @@
     "singleQuote": true,
     "arrowParens": "always"
   },
-  "packageManager": "yarn@3.2.2",
+  "packageManager": "yarn@3.2.3",
   "dependencies": {
     "camel-case": "^4.1.2"
   }
