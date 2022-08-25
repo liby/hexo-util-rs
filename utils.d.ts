@@ -15,4 +15,10 @@ export interface Options {
 }
 export function slugize(str: Buffer | string, options?: Options | undefined | null): string
 export function stripTags(htmlContent: Buffer | string): string
+export interface TocObj {
+  text: string
+  id: string
+  level: number
+}
+export function tocObj(input: Buffer | string): Array<TocObj>
 export function unescapeHtml(input: Buffer | string): string
