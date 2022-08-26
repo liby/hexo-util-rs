@@ -54,6 +54,14 @@ export function prettyUrls(
 
 export function relativeUrl(from?: string, to?: string): string
 
+export function tocObj(
+  str: string,
+  options?: {
+    min_depth?: number
+    max_depth?: number
+  },
+): { text: string; id: string; level: number; unnumbered?: boolean }[]
+
 export function truncate(
   url: string,
   options?: {
