@@ -15,7 +15,7 @@ env:
       - '**/*.gitignore'
       - .editorconfig
       - docs/**
-  pull_request: null
+
 jobs:
   build:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
@@ -25,19 +25,25 @@ jobs:
         settings:
           - host: macos-latest
             target: x86_64-apple-darwin
+            setup: brew install nasm
             build: |
+              rustc --print target-cpus
               yarn build
-              strip -x *.node
+               strip -x *.node
+            downloadTarget: ''
           - host: windows-latest
             build: yarn build
-            target: x86_64-pc-windows-msvc
+            target: 'x86_64-pc-windows-msvc'
+            downloadTarget: ''
           - host: windows-latest
             build: |
               yarn build --target i686-pc-windows-msvc
               yarn test
             target: i686-pc-windows-msvc
+            downloadTarget: ''
           - host: ubuntu-latest
             target: x86_64-unknown-linux-gnu
+            downloadTarget: ''
             docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
             build: |-
               set -e &&
@@ -56,7 +62,7 @@ jobs:
               SYSROOT=$(xcrun --sdk macosx --show-sdk-path);
               export CFLAGS="-isysroot $SYSROOT -isystem $SYSROOT";
               yarn build --target aarch64-apple-darwin
-              strip -x *.node
+               strip -x *.node
           - host: ubuntu-latest
             target: aarch64-unknown-linux-gnu
             docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian-aarch64
@@ -107,13 +113,22 @@ jobs:
     runs-on: ${{ matrix.settings.host }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: true
       - name: Setup node
         uses: actions/setup-node@v3
         if: ${{ !matrix.settings.docker }}
         with:
           node-version: 16
           check-latest: true
-          cache: yarn
+          cache: 'yarn'
+      - name: Set env
+        if: matrix.settings.host == 'windows-latest'
+        run: echo "C:\\msys64\\mingw64\\bin" >> $GITHUB_PATH
+        shell: bash
+      - name: Setup nasm
+        uses: ilammy/setup-nasm@v1
+        if: matrix.settings.host == 'windows-latest'
       - name: Install
         uses: actions-rs/toolchain@v1
         if: ${{ !matrix.settings.docker }}
@@ -146,14 +161,14 @@ jobs:
         run: yarn config set supportedArchitectures.cpu "ia32"
         shell: bash
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --immutable --mode=skip-build
       - name: Setup node x86
         uses: actions/setup-node@v3
         if: matrix.settings.target == 'i686-pc-windows-msvc'
         with:
           node-version: 16
           check-latest: true
-          cache: yarn
+          cache: 'yarn'
           architecture: x86
       - name: Build in docker
         uses: addnab/docker-run-action@v3
@@ -229,8 +244,10 @@ jobs:
       fail-fast: false
       matrix:
         settings:
+          - host: macos-latest
+            target: 'x86_64-apple-darwin'
           - host: windows-latest
-            target: x86_64-pc-windows-msvc
+            target: 'x86_64-pc-windows-msvc'
         node:
           - '14'
           - '16'
@@ -238,19 +255,29 @@ jobs:
     runs-on: ${{ matrix.settings.host }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Download Apple Emoji font
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: 'PoomSmart/EmojiLibrary'
+          latest: true
+          fileName: AppleColorEmoji@2x.ttf
+          token: ${{ secrets.GITHUB_TOKEN }}
+          out-file-path: __test__/fonts/
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
-          cache: yarn
+          cache: 'yarn'
       - name: Cache NPM dependencies
         uses: actions/cache@v3
         with:
           path: .yarn/cache
           key: npm-cache-test-${{ matrix.settings.target }}-${{ matrix.node }}
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --immutable --mode=skip-build
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
@@ -261,6 +288,13 @@ jobs:
         shell: bash
       - name: Test bindings
         run: yarn test
+      - name: Test failed
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: failure-images-${{ matrix.settings.target }}-${{ matrix.node }}
+          path: __test__/failure/**
+
   test-linux-x64-gnu-binding:
     name: Test bindings on Linux-x64-gnu - node@${{ matrix.node }}
     needs:
@@ -280,14 +314,14 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
-          cache: yarn
+          cache: 'yarn'
       - name: Cache NPM dependencies
         uses: actions/cache@v3
         with:
           path: .yarn/cache
           key: npm-cache-test-linux-x64-gnu-${{ matrix.node }}
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --immutable --mode=skip-build
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
@@ -298,6 +332,13 @@ jobs:
         shell: bash
       - name: Test bindings
         run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-slim yarn test
+      - name: Test failed
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: failure-images-x86_64-unknown-linux-gnu-${{ matrix.node }}
+          path: __test__/failure/**
+
   test-linux-x64-musl-binding:
     name: Test bindings on x86_64-unknown-linux-musl - node@${{ matrix.node }}
     needs:
@@ -317,7 +358,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
-          cache: yarn
+          cache: 'yarn'
       - name: Cache NPM dependencies
         uses: actions/cache@v3
         with:
@@ -326,7 +367,7 @@ jobs:
       - name: Install dependencies
         run: |
           yarn config set supportedArchitectures.libc "musl"
-          yarn install
+          yarn install --immutable --mode=skip-build
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
@@ -337,6 +378,13 @@ jobs:
         shell: bash
       - name: Test bindings
         run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-alpine yarn test
+      - name: Test failed
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: failure-images-x86_64-unknown-linux-musl-${{ matrix.node }}
+          path: __test__/failure/**
+
   test-linux-aarch64-gnu-binding:
     name: Test bindings on aarch64-unknown-linux-gnu - node@${{ matrix.node }}
     needs:
@@ -369,16 +417,23 @@ jobs:
         run: |
           yarn config set supportedArchitectures.cpu "arm64"
           yarn config set supportedArchitectures.libc "glibc"
-          yarn install
+          yarn install --immutable --mode=skip-build
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
           image: ghcr.io/napi-rs/napi-rs/nodejs:aarch64-${{ matrix.node }}
           options: '-v ${{ github.workspace }}:/build -w /build'
           run: |
-            set -e
-            yarn test
+            set -e && \
+            yarn test && \
             ls -la
+      - name: Test failed
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: failure-images-aarch64-unknown-linux-gnu-${{ matrix.node }}
+          path: __test__/failure/**
+
   test-linux-aarch64-musl-binding:
     name: Test bindings on aarch64-unknown-linux-musl - node@${{ matrix.node }}
     needs:
@@ -404,7 +459,7 @@ jobs:
         run: |
           yarn config set supportedArchitectures.cpu "arm64"
           yarn config set supportedArchitectures.libc "musl"
-          yarn install
+          yarn install --immutable --mode=skip-build
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -414,6 +469,13 @@ jobs:
             set -e
             apk add nodejs npm yarn
             yarn test
+      - name: Test failed
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: failure-images-aarch64-unknown-linux-musl-${{ matrix.node }}
+          path: __test__/failure/**
+
   test-linux-arm-gnueabihf-binding:
     name: Test bindings on armv7-unknown-linux-gnueabihf - node@${{ matrix.node }}
     needs:
@@ -445,16 +507,23 @@ jobs:
       - name: Install dependencies
         run: |
           yarn config set supportedArchitectures.cpu "arm"
-          yarn install
+          yarn install --immutable --mode=skip-build
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
           image: ghcr.io/napi-rs/napi-rs/nodejs:armhf-${{ matrix.node }}
           options: '-v ${{ github.workspace }}:/build -w /build'
           run: |
-            set -e
-            yarn test
+            set -e && \
+            yarn test && \
             ls -la
+      - name: Test failed
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: failure-images-armv7-unknown-linux-gnueabihf-${{ matrix.node }}
+          path: __test__/failure/**
+
   publish:
     name: Publish
     runs-on: ubuntu-latest
@@ -473,7 +542,7 @@ jobs:
         with:
           node-version: 16
           check-latest: true
-          cache: yarn
+          cache: 'yarn'
       - name: Cache NPM dependencies
         uses: actions/cache@v3
         with:
@@ -482,7 +551,7 @@ jobs:
           restore-keys: |
             npm-cache-
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --immutable --mode=skip-build
       - name: Download all artifacts
         uses: actions/download-artifact@v3
         with:
