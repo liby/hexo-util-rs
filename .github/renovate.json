@@ -15,5 +15,6 @@
     "extends": ["schedule:monthly"]
   },
   "extends": ["config:base", ":preserveSemverRanges"],
-  "ignoreDeps": ["string-strip-html"]
+  "ignoreDeps": ["string-strip-html"],
+  "schedule": ["every weekend"]
 }
