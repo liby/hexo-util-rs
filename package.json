@@ -85,6 +85,7 @@
   },
   "dependencies": {
     "camel-case": "^4.1.2",
+    "deepmerge": "^4.2.2",
     "htmlparser2": "^8.0.1"
   },
   "lint-staged": {
