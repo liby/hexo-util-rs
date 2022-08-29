@@ -16,3 +16,4 @@ index.d.ts linguist-detectable=false
 # Apply override to all files and directories in the directory
 benchmark/** linguist-vendored
 common/** linguist-vendored
+__text__/** linguist-vendored

@@ -46,6 +46,8 @@ export function camelCaseKeys(obj: Record<string, unknown>): Record<string, unkn
 
 export function deepMerge(target: Record<string, unknown>, source: Record<string, unknown>): Record<string, unknown>
 
+export function fullUrlFor(path?: string): string
+
 export function prettyUrls(
   url: string,
   options?: {
