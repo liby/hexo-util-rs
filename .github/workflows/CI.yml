@@ -3,18 +3,8 @@ env:
   DEBUG: napi:*
   APP_NAME: hexo-util
   MACOSX_DEPLOYMENT_TARGET: '10.13'
-'on':
-  push:
-    branches:
-      - main
-    tags-ignore:
-      - '**'
-    paths-ignore:
-      - '**/*.md'
-      - LICENSE
-      - '**/*.gitignore'
-      - .editorconfig
-      - docs/**
+
+on: push
 
 jobs:
   build:
@@ -137,21 +127,21 @@ jobs:
           override: true
           toolchain: stable
           target: ${{ matrix.settings.target }}
-      - name: Cache cargo
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            .cargo-cache
-            target/
-          key: ${{ matrix.settings.target }}-cargo-registry
-      - name: Cache NPM dependencies
-        uses: actions/cache@v3
-        with:
-          path: .yarn/cache
-          key: npm-cache-build-${{ matrix.settings.target }}-node@16
+#      - name: Cache cargo
+#        uses: actions/cache@v3
+#        with:
+#          path: |
+#            ~/.cargo/registry/index/
+#            ~/.cargo/registry/cache/
+#            ~/.cargo/git/db/
+#            .cargo-cache
+#            target/
+#          key: ${{ matrix.settings.target }}-cargo-registry
+#      - name: Cache NPM dependencies
+#        uses: actions/cache@v3
+#        with:
+#          path: .yarn/cache
+#          key: npm-cache-build-${{ matrix.settings.target }}-node@16
       - name: Setup toolchain
         run: ${{ matrix.settings.setup }}
         if: ${{ matrix.settings.setup }}
@@ -168,7 +158,7 @@ jobs:
         with:
           node-version: 16
           check-latest: true
-          cache: 'yarn'
+#          cache: 'yarn'
           architecture: x86
       - name: Build in docker
         uses: addnab/docker-run-action@v3
