@@ -48,6 +48,8 @@ export function deepMerge(target: Record<string, unknown>, source: Record<string
 
 export function fullUrlFor(path?: string): string
 
+export function gravatar(email: string, options?: number | Record<string, number | string>): string
+
 export function prettyUrls(
   url: string,
   options?: {
