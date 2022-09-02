@@ -3,22 +3,10 @@ env:
   DEBUG: napi:*
   APP_NAME: hexo-util
   MACOSX_DEPLOYMENT_TARGET: '10.13'
-'on':
-  push:
-    branches:
-      - main
-    tags-ignore:
-      - '**'
-    paths-ignore:
-      - '**/*.md'
-      - LICENSE
-      - '**/*.gitignore'
-      - .editorconfig
-      - docs/**
+'on': push
 
 jobs:
   build:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
     strategy:
       fail-fast: false
       matrix:

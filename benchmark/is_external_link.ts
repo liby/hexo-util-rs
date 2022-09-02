@@ -3,7 +3,6 @@ import b from 'benny'
 import { isExternalLink as hexoIsExternalLink } from 'hexo-util'
 
 import { isExternalLink as isExternalLinkWithEarlyReturn } from '../index.js'
-// @ts-expect-error  generated types are for index.js
 import { isExternalLink } from '../utils.js'
 
 export async function benchIsExternalLink() {

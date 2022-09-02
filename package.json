@@ -103,10 +103,10 @@
     "extensions": [
       "ts"
     ],
+    "files": ["__test__/*.spec.ts"],
     "environmentVariables": {
       "TS_NODE_PROJECT": "./tsconfig.json"
-    },
-    "workerThreads": false
+    }
   },
   "prettier": {
     "printWidth": 120,
