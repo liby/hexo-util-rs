@@ -1,3 +1,4 @@
+import { Hash } from 'crypto'
 import { Transform, TransformCallback } from 'stream'
 
 export * from './utils'
@@ -44,11 +45,15 @@ export class Color {
 
 export function camelCaseKeys(obj: Record<string, unknown>): Record<string, unknown>
 
+export function createSha1Hash(): Hash
+
 export function deepMerge(target: Record<string, unknown>, source: Record<string, unknown>): Record<string, unknown>
 
 export function fullUrlFor(path?: string): string
 
 export function gravatar(email: string, options?: number | Record<string, number | string>): string
+
+export function hash(content: unknown): Buffer | string
 
 export function prettyUrls(
   url: string,
