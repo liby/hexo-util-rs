@@ -55,6 +55,14 @@ export function gravatar(email: string, options?: number | Record<string, number
 
 export function hash(content: unknown): Buffer | string
 
+export class Pattern {
+  constructor(rule: Pattern | RegExp | ((input: any) => any) | string)
+
+  test(str: string): boolean
+
+  match(str: string): Record<string | number, string | undefined> | RegExpMatchArray
+}
+
 export function prettyUrls(
   url: string,
   options?: {
