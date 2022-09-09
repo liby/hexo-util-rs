@@ -55,6 +55,8 @@ export function gravatar(email: string, options?: number | Record<string, number
 
 export function hash(content: unknown): Buffer | string
 
+export function htmlTag(tag: string, attrs?: Record<string, unknown>, text?: string, escape?: boolean): string
+
 export class Pattern {
   constructor(rule: Pattern | RegExp | ((input: any) => any) | string)
 
