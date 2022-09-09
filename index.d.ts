@@ -63,6 +63,25 @@ export class Pattern {
   match(str: string): Record<string | number, string | undefined> | RegExpMatchArray
 }
 
+export class Permalink {
+  rule: string
+  regex: RegExp
+  params: string[]
+
+  constructor(
+    rule: string,
+    options?: {
+      segments: [{ text: string; type: string }] | unknown
+    },
+  )
+
+  test(str: string): boolean
+
+  parse(str: string): undefined | any
+
+  stringify(data: unknown): string
+}
+
 export function prettyUrls(
   url: string,
   options?: {
