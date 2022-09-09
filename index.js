@@ -57,6 +57,7 @@ module.exports.hash = require('./common/hash').hash
 module.exports.Pattern = require('./common/pattern')
 module.exports.Permalink = require('./common/permalink')
 module.exports.prettyUrls = require('./common/pretty_urls')
+module.exports.prismHighlight = require('./common/prism')
 module.exports.relativeUrl = require('./common/relative_url')
 module.exports.stripIndent = require('strip-indent')
 module.exports.tocObj = require('./common/toc_obj')

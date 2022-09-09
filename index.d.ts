@@ -90,6 +90,19 @@ export function prettyUrls(
   },
 ): string
 
+export function prismHighlight(
+  str: string,
+  options?: {
+    lineNumber?: boolean
+    lang?: string
+    tab?: string
+    mark?: string
+    firstLine?: string
+    isPreprocess?: boolean
+    caption?: string
+  },
+): string
+
 export function relativeUrl(from?: string, to?: string): string
 
 export function stripIndent(string: string): string
