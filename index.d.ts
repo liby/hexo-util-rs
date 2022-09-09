@@ -92,6 +92,8 @@ export function prettyUrls(
 
 export function relativeUrl(from?: string, to?: string): string
 
+export function stripIndent(string: string): string
+
 export function tocObj(
   str: string,
   options?: {

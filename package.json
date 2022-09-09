@@ -71,7 +71,7 @@
     "ava": "^4.3.3",
     "benny": "^3.7.1",
     "chalk": "^5.0.1",
-    "eslint": "^8.20.0",
+    "eslint": "8.22.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -86,7 +86,8 @@
   "dependencies": {
     "camel-case": "^4.1.2",
     "deepmerge": "^4.2.2",
-    "htmlparser2": "^8.0.1"
+    "htmlparser2": "^8.0.1",
+    "strip-indent": "^3.0.0"
   },
   "lint-staged": {
     "*.@(js|ts|tsx)": [
