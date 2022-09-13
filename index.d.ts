@@ -107,6 +107,14 @@ export function prismHighlight(
 
 export function relativeUrl(from?: string, to?: string): string
 
+export function spawn(
+  command: string,
+  args?: string | string[] | Record<string, unknown>,
+  options?: Record<string, unknown> & {
+    verbose?: boolean
+  },
+): Promise<any>
+
 export function stripIndent(string: string): string
 
 export function tocObj(
