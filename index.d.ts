@@ -126,6 +126,13 @@ export function truncate(
   },
 ): string
 
+export function urlFor(
+  path?: string,
+  options?: {
+    relative?: boolean
+  },
+): string
+
 export function wordWrap(
   str: string,
   options?: {
