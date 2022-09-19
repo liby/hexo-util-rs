@@ -55,6 +55,22 @@ export function gravatar(email: string, options?: number | Record<string, number
 
 export function hash(content: unknown): Buffer | string
 
+export function highlight(
+  str: string,
+  options?: {
+    autoDetect?: boolean
+    caption?: string
+    firstLine?: number
+    gutter?: boolean
+    hljs?: boolean
+    lang?: string
+    languageAttr?: boolean
+    mark?: string | number[]
+    tab?: string
+    wrap?: boolean
+  },
+): string
+
 export function htmlTag(tag: string, attrs?: Record<string, unknown>, text?: string, escape?: boolean): string
 
 export class Pattern {

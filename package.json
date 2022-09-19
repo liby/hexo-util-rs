@@ -17,11 +17,13 @@
     "utilities"
   ],
   "files": [
+    "common",
+    "highlight_alias.json",
     "index.d.ts",
     "index.js",
     "utils.d.ts",
     "utils.js",
-    "common"
+    "scripts/"
   ],
   "napi": {
     "name": "hexo-util",
@@ -58,8 +60,10 @@
     "format:rs": "cargo fmt",
     "lint": "eslint . -c ./.eslintrc.yml",
     "prepublishOnly": "napi prepublish -t npm",
-    "test": "ava",
-    "version": "napi version"
+    "test": "yarn build:highlight && ava",
+    "version": "napi version",
+    "build:highlight": "node scripts/build_highlight_alias.js",
+    "prepare": "npm run build:highlight"
   },
   "devDependencies": {
     "@napi-rs/cli": "^2.10.3",
@@ -91,6 +95,7 @@
     "camel-case": "^4.1.2",
     "cross-spawn": "^7.0.3",
     "deepmerge": "^4.2.2",
+    "highlight.js": "^11.6.0",
     "htmlparser2": "^8.0.1",
     "prismjs": "^1.29.0",
     "strip-indent": "^3.0.0"

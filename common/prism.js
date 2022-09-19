@@ -27,7 +27,7 @@ const { escapeHtml } = require('../index')
  * @param {String} language
  */
 function prismHighlight(code, language) {
-  // Prism has not load the language pattern
+  // Prism has not loaded the language pattern
   if (!Prism.languages[language] && prismSupportedLanguages.includes(language)) prismLoadLanguages(language)
 
   if (Prism.languages[language]) {

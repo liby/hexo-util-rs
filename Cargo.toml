@@ -1,5 +1,5 @@
 [package]
-authors = ["LongYinan <lynweklm@gmail.com>"]
+authors = ["Bryan Lee<38807139+liby@users.noreply.github.com>"]
 edition = "2021"
 name = "hexo-util"
 version = "0.1.0"

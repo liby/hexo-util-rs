@@ -54,6 +54,7 @@ module.exports.deepMerge = require('./common/deep_merge')
 module.exports.fullUrlFor = require('./common/full_url_for')
 module.exports.gravatar = require('./common/gravatar')
 module.exports.hash = require('./common/hash').hash
+module.exports.highlight = require('./common/highlight')
 module.exports.htmlTag = require('./common/html_tag')
 module.exports.Pattern = require('./common/pattern')
 module.exports.Permalink = require('./common/permalink')
