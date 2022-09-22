@@ -7,7 +7,7 @@
 
 > **Warning**
 >
-> This project is in alpha stage. And there may some bugs existed.
+> This project is in Beta stage. And there may some bugs existed.
 
 ## Installation
 
@@ -24,6 +24,43 @@ $ pnpm add @sukka/hexo-util-rs
 ```js
 const util = require('@sukka/hexo-util-rs')
 ```
+
+| Function name                              | Is RIIR |                                                                             Usage                                                                              | Is Rename                        |
+|:-------------------------------------------|--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------:|----------------------------------|
+| `Cache()`                                  |      No |                                            [A simple plain object cache](https://github.com/hexojs/hexo-util#cache)                                            |                                  |
+| `CacheStream()`                            |      No |                                     [Caches contents piped to the stream](https://github.com/hexojs/hexo-util#cachestream)                                     |                                  |
+| `camelCaseKeys(obj, options)`              |      No |                                [Convert object keys to camelCase](https://github.com/hexojs/hexo-util#camelcasekeysobj-options)                                |                                  |
+| `createSha1Hash()`                         |      No |                                         [Return SHA1 hash object](https://github.com/hexojs/hexo-util#createsha1hash)                                          |                                  |
+| `decodeUrl(str)`                           |     Yes |                                         [Decode encoded URL or path](https://github.com/hexojs/hexo-util#decodeurlstr)                                         | `decodeURL` => `decodeUrl`       |
+| `deepMerge(target, source)`                |      No |                      [Merges the enumerable properties of two objects deeply](https://github.com/hexojs/hexo-util#deepmergetarget-source)                      |                                  |
+| `encodeUrl(str)`                           |     Yes |                                   [Encode URL or path into a safe format](https://github.com/hexojs/hexo-util#encodeurlstr)                                    | `encodeURL` => `encodeUrl`       |
+| `escapeDiacritic(str)`                     |     Yes |                               [Escapes diacritic characters in a string](https://github.com/hexojs/hexo-util#escapediacriticstr)                               |                                  |
+| `escapeHtml(str)`                          |     Yes |                                    [Escapes HTML entities in a string.](https://github.com/hexojs/hexo-util#escapehtmlstr)                                     | `escapeHTML` => `escapeHtml`     |
+| `escapeRegExp(str)`                        |     Yes |                            [Escapes special characters in a regular expression](https://github.com/hexojs/hexo-util#escaperegexstr)                            | `escapeRegex` => `escapeRegExp`  |
+| `full_url_for(path)`                       |      No |                               [Returns a url with the config.url prefixed](https://github.com/hexojs/hexo-util#full_url_forpath)                               | `full_url_for` => `fullUrlFor`   |
+| `gravatar(str, [options])`                 |      No |                            [Returns the gravatar image url from an email](https://github.com/hexojs/hexo-util#gravatarstr-options)                             |                                  |
+| `hash(str)`                                |      No |                                               [Generates SHA1 hash](https://github.com/hexojs/hexo-util#hashstr)                                               |                                  |
+| `highlight(str, [options])`                |      No |                                [Syntax highlighting for a code block](https://github.com/hexojs/hexo-util#highlightstr-options)                                |                                  |
+| `htmlTag(tag, attrs, text, escape)`        |      No |                                     [Creates a html tag](https://github.com/hexojs/hexo-util#htmltagtag-attrs-text-escape)                                     |                                  |
+| `isExternalLink(url, sitehost, [exclude])` |     Yes | [Returns if a given url is external link relative to given `sitehost` and `[exclude]`](https://github.com/hexojs/hexo-util#isexternallinkurl-sitehost-exclude) |                                  |
+| `Pattern(rule)`                            |      No |                         [Parses the string and tests if the string matches the rule](https://github.com/hexojs/hexo-util#patternrule)                          |                                  |
+| `Permalink(rule, [options])`               |      No |                                        [Parses a permalink](https://github.com/hexojs/hexo-util#permalinkrule-options)                                         |                                  |
+| `prettyUrls(url, [options])`               |     n/a |                                    [Rewrite urls to pretty URLs](https://github.com/hexojs/hexo-util#prettyurlsurl-options)                                    |                                  |
+| `prismHighlight(str, [options])`           |      No |                      [Syntax highlighting for a code block using PrismJS](https://github.com/hexojs/hexo-util#prismhighlightstr-options)                       |                                  |
+| `relativeUrl(from, to)`                    |      No |                              [Returns the relative URL from from to to](https://github.com/hexojs/hexo-util#relative_urlfrom-to)                               | `relative_url` => `relativeUrl`  |
+| `slugize(str, [options])`                  |     Yes |                         [Transforms a string into a clean URL-friendly string](https://github.com/hexojs/hexo-util#slugizestr-options)                         |                                  |
+| `spawn(command, [args], [options])`        |      No |                         [Launches a new process with the given command](https://github.com/hexojs/hexo-util#spawncommand-args-options)                         |                                  |
+| `stripTags(str)`                           |     Yes |                                       [Removes HTML tags in a string](https://github.com/hexojs/hexo-util#striphtmlstr)                                        | `stripHTML` => `stripTags`       |
+| `stripIndent(str)`                         |      No |                           [Strip leading whitespace from each line in a string](https://github.com/hexojs/hexo-util#stripindentstr)                            |                                  |
+| `wordWrap(str, [options])`                 |     n/a |                             [Wraps the string no longer than line width](https://github.com/hexojs/hexo-util#wordwrapstr-options)                              |                                  |
+| `tocObj(str, [options])`                   |     n/a |              [Generate a table of contents in JSON format based on the given html string](https://github.com/hexojs/hexo-util#tocobjstr-options)               |                                  |
+| `truncate(str, [options])`                 |     n/a |              [Truncates a given text after a given length if text is longer than length](https://github.com/hexojs/hexo-util#truncatestr-options)              |                                  |
+| `unescapeHtml(str)`                        |     Yes |                                   [Unescapes HTML entities in a string](https://github.com/hexojs/hexo-util#unescapehtmlstr)                                   | `unescapeHTML` => `unescapeHtml` |
+| `urlFor(path, [option])`                   |      No |                              [Returns a url with the root path prefixed](https://github.com/hexojs/hexo-util#url_forpath-option)                               | `url_for` =>   `urlFor`          |
+
+> **Note**
+> 
+> [`full_url_for`, `url_for`, `relative_url` require `bind` or `call` to parse the user config when initializing](https://github.com/hexojs/hexo-util#bindhexo).
 
 ## Performance
 
