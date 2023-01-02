@@ -1,18 +1,18 @@
-'use strict'
-const { DomHandler, DomUtils, Parser } = require('htmlparser2')
+import type { Element } from 'domhandler'
+import { DomHandler, DomUtils, Parser } from 'htmlparser2'
 
-const { escapeHtml } = require('../index')
+import { escapeHtml } from '../utils'
 
 const nonWord = /^\s*[^a-zA-Z0-9]\s*$/
 
-const parseHtml = (html) => {
+const parseHtml = (html: string) => {
   const handler = new DomHandler(null, {})
   new Parser(handler, {}).end(html)
   return handler.dom
 }
 
-const getId = ({ attribs = {}, parent }) => {
-  return attribs.id || (!parent ? '' : getId(parent))
+const getId = ({ attribs = {}, parent }: Element): string => {
+  return attribs.id || (!parent ? '' : getId(parent as Element))
 }
 
 /**
@@ -22,7 +22,14 @@ const isUnnumbered = ({ attribs = {} }) => {
   return attribs['data-toc-unnumbered'] === 'true'
 }
 
-function tocObj(str, options = {}) {
+interface Result {
+  text: string
+  id: string
+  level: number
+  unnumbered?: boolean
+}
+
+function tocObj(str: string, options = {}) {
   const { min_depth, max_depth } = Object.assign(
     {
       min_depth: 1,
@@ -32,7 +39,12 @@ function tocObj(str, options = {}) {
   )
 
   const headingsSelector = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].slice(min_depth - 1, max_depth)
-  const headings = DomUtils.find(({ tagName }) => headingsSelector.includes(tagName), parseHtml(str), true)
+  const headings = DomUtils.find(
+    (element) => 'tagName' in element && headingsSelector.includes(element.tagName),
+    parseHtml(str),
+    true,
+    Infinity,
+  ) as Element[]
   const headingsLen = headings.length
 
   if (!headingsLen) return []
@@ -50,13 +62,13 @@ function tocObj(str, options = {}) {
       // Skip permalink symbol wrapped in <a>
       // permalink is a single non-word character, word = [a-Z0-9]
       // permalink may be wrapped in whitespace(s)
-      if (element.name !== 'a' || !nonWord.test(elText)) {
+      if (!('name' in element) || element.name !== 'a' || !nonWord.test(elText)) {
         text += escapeHtml(elText)
       }
     }
     if (!text) text = escapeHtml(DomUtils.textContent(el))
 
-    const res = { text, id, level }
+    const res: Result = { text, id, level }
     if (unnumbered) res.unnumbered = true
     result.push(res)
   }
@@ -64,4 +76,4 @@ function tocObj(str, options = {}) {
   return result
 }
 
-module.exports = tocObj
+export = tocObj

@@ -1,18 +1,25 @@
-'use strict'
-
-const { escapeRegExp } = require('../index')
+import { escapeRegExp } from '../utils'
 
 const rParam = /:(\w*[^_\W])/g
 
+interface Options {
+  segments?: {
+    [key: string]: RegExp | string
+  }
+}
+
 class Permalink {
-  constructor(rule, options) {
+  rule: string
+  regex: RegExp
+  params: string[]
+
+  constructor(rule: string, options: Options = {}) {
     if (!rule) {
       throw new TypeError('rule is required!')
     }
-    options = options || {}
-    const segments = options.segments || {}
-    const params = []
-    const regex = escapeRegExp(rule).replace(rParam, (match, name) => {
+    const segments = options.segments ?? {}
+    const params: string[] = []
+    const regex = escapeRegExp(rule).replace(rParam, (_match, name) => {
       params.push(name)
       if (Object.prototype.hasOwnProperty.call(segments, name)) {
         const segment = segments[name]
@@ -28,11 +35,11 @@ class Permalink {
     this.params = params
   }
 
-  test(str) {
+  test(str: string) {
     return this.regex.test(str)
   }
 
-  parse(str) {
+  parse(str: string) {
     const match = str.match(this.regex)
     const { params } = this
     const result = {}
@@ -46,8 +53,8 @@ class Permalink {
   }
 
   stringify(data) {
-    return this.rule.replace(rParam, (match, name) => data[name])
+    return this.rule.replace(rParam, (_match, name) => data[name])
   }
 }
 
-module.exports = Permalink
+export = Permalink

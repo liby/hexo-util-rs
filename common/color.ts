@@ -1,5 +1,3 @@
-'use strict'
-
 // https://github.com/imathis/hsl-picker/blob/master/assets/javascripts/modules/color.coffee
 const rHex3 = /^#[0-9a-f]{3}$/
 const rHex6 = /^#[0-9a-f]{6}$/
@@ -157,7 +155,7 @@ const colorNames = {
   yellowgreen: { r: 154, g: 205, b: 50, a: 1 },
 }
 
-const convertHue = (p, q, h) => {
+const convertHue = (p: number, q: number, h: number) => {
   if (h < 0) h++
   if (h > 1) h--
 
@@ -176,23 +174,35 @@ const convertHue = (p, q, h) => {
   return Math.round(color * 255)
 }
 
-const convertRGB = (value) => {
+const convertRGB = (value: number) => {
   const str = value.toString(16)
   if (value < 16) return `0${str}`
 
   return str
 }
 
-const mixValue = (a, b, ratio) => a + (b - a) * ratio
+const mixValue = (a: number, b: number, ratio: number) => a + (b - a) * ratio
+
+interface RGBA {
+  r: number
+  g: number
+  b: number
+  a: number
+}
 
 class Color {
+  r: number | undefined
+  g: number | undefined
+  b: number | undefined
+  a: number | undefined
+
   /**
    * @param {string|{ r: number; g: number; b: number; a: number;}} color
    */
-  constructor(color) {
+  constructor(color: string | Partial<RGBA>) {
     if (typeof color === 'string') {
       this._parse(color)
-    } else if (color != null && typeof color === 'object') {
+    } else if (typeof color === 'object' && color.r && color.g && color.b && color.a) {
       this.r = color.r | 0
       this.g = color.g | 0
       this.b = color.b | 0
@@ -202,14 +212,14 @@ class Color {
     }
 
     if (
-      this.r < 0 ||
-      this.r > 255 ||
-      this.g < 0 ||
-      this.g > 255 ||
-      this.b < 0 ||
-      this.b > 255 ||
-      this.a < 0 ||
-      this.a > 1
+      this.r! < 0 ||
+      this.r! > 255 ||
+      this.g! < 0 ||
+      this.g! > 255 ||
+      this.b! < 0 ||
+      this.b! > 255 ||
+      this.a! < 0 ||
+      this.a! > 1
     ) {
       throw new RangeError(`{r: ${this.r}, g: ${this.g}, b: ${this.b}, a: ${this.a}} is invalid.`)
     }
@@ -218,7 +228,7 @@ class Color {
   /**
    * @param {string} color
    */
-  _parse(color) {
+  _parse(color: string) {
     color = color.toLowerCase()
 
     if (Object.prototype.hasOwnProperty.call(colorNames, color)) {
@@ -259,9 +269,9 @@ class Color {
     let match = color.match(rRGB)
 
     if (match) {
-      this.r = match[1] | 0
-      this.g = match[2] | 0
-      this.b = match[3] | 0
+      this.r = Number(match[1]) | 0
+      this.g = Number(match[2]) | 0
+      this.b = Number(match[3]) | 0
       this.a = match[4] ? +match[4] : 1
 
       return
@@ -301,25 +311,25 @@ class Color {
 
   toString() {
     if (this.a === 1) {
-      const r = convertRGB(this.r)
-      const g = convertRGB(this.g)
-      const b = convertRGB(this.b)
+      const r = convertRGB(this.r!)
+      const g = convertRGB(this.g!)
+      const b = convertRGB(this.b!)
 
-      if (this.r % 17 || this.g % 17 || this.b % 17) {
+      if (this.r! % 17 || this.g! % 17 || this.b! % 17) {
         return `#${r}${g}${b}`
       }
 
       return `#${r[0]}${g[0]}${b[0]}`
     }
 
-    return `rgba(${this.r}, ${this.g}, ${this.b}, ${parseFloat(this.a.toFixed(2))})`
+    return `rgba(${this.r}, ${this.g}, ${this.b}, ${parseFloat(this.a!.toFixed(2))})`
   }
 
   /**
    * @param {string|{ r: number; g: number; b: number; a: number;}} color
    * @param {number} ratio
    */
-  mix(color, ratio) {
+  mix(color: RGBA, ratio: number) {
     if (ratio > 1 || ratio < 0) {
       throw new RangeError('Valid numbers is only between 0 and 1.')
     }
@@ -332,12 +342,11 @@ class Color {
     }
 
     return new Color({
-      r: Math.round(mixValue(this.r, color.r, ratio)),
-      g: Math.round(mixValue(this.g, color.g, ratio)),
-      b: Math.round(mixValue(this.b, color.b, ratio)),
-      a: mixValue(this.a, color.a, ratio),
+      r: Math.round(mixValue(this.r!, color.r, ratio)),
+      g: Math.round(mixValue(this.g!, color.g, ratio)),
+      b: Math.round(mixValue(this.b!, color.b, ratio)),
+      a: mixValue(this.a!, color.a, ratio),
     })
   }
 }
-
-module.exports = Color
+export = Color

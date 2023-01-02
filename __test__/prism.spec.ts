@@ -256,15 +256,15 @@ test('mark', (t) => {
 test('firstLine', (t) => {
   const input = ['function fib(i){', '  if (i <= 1) return i;', '  return fib(i - 1) + fib(i - 2);', '}'].join('\n')
 
-  const result1 = prismHighlight(input, { lang: 'js', isPreprocess: false, lineNumber: true, firstLine: '-5' })
+  const result1 = prismHighlight(input, { lang: 'js', isPreprocess: false, lineNumber: true, firstLine: -5 })
   t.true(result1.includes('<pre class="line-numbers language-javascript" data-language="javascript" data-start="-5">'))
 
   // isPreprocess - true (firstLine should be disabled)
-  const result2 = prismHighlight(input, { lang: 'js', isPreprocess: true, lineNumber: true, firstLine: '-5' })
+  const result2 = prismHighlight(input, { lang: 'js', isPreprocess: true, lineNumber: true, firstLine: -5 })
   t.true(result2.includes('<pre class="line-numbers language-javascript" data-language="javascript">'))
 
   // lineNumber - false (firstLine should be disabled)
-  const result3 = prismHighlight(input, { lang: 'js', isPreprocess: false, lineNumber: false, firstLine: '-5' })
+  const result3 = prismHighlight(input, { lang: 'js', isPreprocess: false, lineNumber: false, firstLine: -5 })
   t.true(result3.includes('<pre class="language-javascript" data-language="javascript">'))
 
   // Only validate the result1
@@ -292,12 +292,12 @@ test('offset - mark & firstLine', (t) => {
       -]>[-]>[-]>>>[>>[<<<<<<<<+>>>>>>>>-]<<-]]>>[-]<<<[-]<<<<<<<<]++++++++++.`
 
   // isPreprocess - true (mark should be disabled)
-  const result1 = prismHighlight(input, { lang: 'brainfuck', isPreprocess: true, mark: '1,3-6,10', firstLine: '-5' })
+  const result1 = prismHighlight(input, { lang: 'brainfuck', isPreprocess: true, mark: '1,3-6,10', firstLine: -5 })
   // Start Tag
   t.true(result1.includes('<pre class="line-numbers language-brainfuck" data-language="brainfuck">'))
 
   // isPreprocess - false
-  const result2 = prismHighlight(input, { lang: 'brainfuck', isPreprocess: false, mark: '1,3-6,10', firstLine: '-5' })
+  const result2 = prismHighlight(input, { lang: 'brainfuck', isPreprocess: false, mark: '1,3-6,10', firstLine: -5 })
   // Start Tag
   t.true(
     result2.includes(
