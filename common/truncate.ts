@@ -1,10 +1,14 @@
-'use strict'
+interface Options {
+  length?: number
+  omission?: string
+  separator?: string
+}
 
-function truncate(str, options = {}) {
+function truncate(str: string, options: Options = {}) {
   if (typeof str !== 'string') throw new TypeError('str must be a string!')
 
-  const length = options.length || 30
-  const omission = options.omission || '...'
+  const length = options.length ?? 30
+  const omission = options.omission ?? '...'
   const { separator } = options
   const omissionLength = omission.length
 
@@ -28,4 +32,4 @@ function truncate(str, options = {}) {
   }
 }
 
-module.exports = truncate
+export = truncate

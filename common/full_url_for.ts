@@ -1,11 +1,9 @@
-'use strict'
+import { parse } from 'url'
 
-const { parse } = require('url')
+import { encodeUrl } from '../utils'
 
-const { encodeUrl } = require('../index')
-
-const Cache = require('./cache')
-const prettyUrls = require('./pretty_urls')
+import Cache from './cache'
+import prettyUrls from './pretty_urls'
 
 const cache = new Cache()
 
@@ -25,7 +23,7 @@ function fullUrlForHelper(path = '/') {
     () => {
       if (/^(\/\/|http(s)?:)/.test(path)) return path
 
-      const sitehost = parse(config.url).hostname || config.url
+      const sitehost = parse(config.url).hostname ?? config.url
       const data = new URL(path, `http://${sitehost}`)
 
       // Exit if input is an external link or a data url
@@ -39,4 +37,4 @@ function fullUrlForHelper(path = '/') {
   )
 }
 
-module.exports = fullUrlForHelper
+export = fullUrlForHelper

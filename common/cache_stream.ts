@@ -1,15 +1,15 @@
-'use strict'
-
-const { Transform } = require('stream')
+import { Transform, TransformCallback } from 'stream'
 
 class CacheStream extends Transform {
+  _cache: Buffer[]
+
   constructor() {
     super()
 
     this._cache = []
   }
 
-  _transform(chunk, enc, callback) {
+  _transform(chunk: Buffer | WithImplicitCoercion<string>, enc: BufferEncoding, callback: TransformCallback) {
     const buf = chunk instanceof Buffer ? chunk : Buffer.from(chunk, enc)
     this._cache.push(buf)
     this.push(buf)
@@ -21,4 +21,4 @@ class CacheStream extends Transform {
   }
 }
 
-module.exports = CacheStream
+export = CacheStream

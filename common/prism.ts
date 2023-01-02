@@ -1,10 +1,11 @@
-'use strict'
+import Prism from 'prismjs'
+import prismComponents from 'prismjs/components'
+import prismLoadLanguages from 'prismjs/components/'
+import stripIndent from 'strip-indent'
 
-const Prism = require('prismjs')
-const prismComponents = require('prismjs/components')
 // https://github.com/PrismJS/prism/issues/2145
-const prismLoadLanguages = require('prismjs/components/')
-const stripIndent = require('strip-indent')
+
+import { escapeHtml } from '../utils'
 
 const prismAlias = Object.entries(prismComponents.languages).reduce((acc, [key, value]) => {
   if (value.alias) {
@@ -19,15 +20,13 @@ const prismAlias = Object.entries(prismComponents.languages).reduce((acc, [key, 
 
 const prismSupportedLanguages = Object.keys(prismComponents.languages).concat(Object.keys(prismAlias))
 
-const { escapeHtml } = require('../index')
-
 /**
  * Wrapper of Prism.highlight()
  * @param {String} code
  * @param {String} language
  */
-function prismHighlight(code, language) {
-  // Prism has not loaded the language pattern
+function prismHighlight(code: string, language: string) {
+  // Prism has not load the language pattern
   if (!Prism.languages[language] && prismSupportedLanguages.includes(language)) prismLoadLanguages(language)
 
   if (Prism.languages[language]) {
@@ -43,7 +42,7 @@ function prismHighlight(code, language) {
  * Generate line number required HTML snippet
  * @param {String} code - Highlighted code
  */
-function lineNumberUtil(code) {
+function lineNumberUtil(code: string) {
   const matched = code.match(/\n(?!$)/g)
   const num = matched ? matched.length + 1 : 1
   const lines = new Array(num + 1).join('<span></span>')
@@ -51,11 +50,21 @@ function lineNumberUtil(code) {
   return `<span aria-hidden="true" class="line-numbers-rows">${lines}</span>`
 }
 
-function replaceTabs(str, tab) {
+function replaceTabs(str: string, tab: string) {
   return str.replace(/^\t+/gm, (match) => tab.repeat(match.length))
 }
 
-function PrismUtil(str, options = {}) {
+interface Options {
+  caption?: string
+  firstLine?: number
+  isPreprocess?: boolean
+  lang?: string
+  lineNumber?: boolean
+  mark?: string
+  tab?: string
+}
+
+function PrismUtil(str: string, options: Options = {}) {
   if (typeof str !== 'string') throw new TypeError('str must be a string!')
   str = stripIndent(str)
 
@@ -118,4 +127,4 @@ function PrismUtil(str, options = {}) {
   return startTag + parsedCode + endTag
 }
 
-module.exports = PrismUtil
+export = PrismUtil

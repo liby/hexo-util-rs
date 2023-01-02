@@ -1,6 +1,9 @@
-'use strict'
+interface Options {
+  trailing_index?: boolean
+  trailing_html?: boolean
+}
 
-function prettyUrls(url, options = {}) {
+function prettyUrls(url: string, options: Options = {}) {
   options = Object.assign(
     {
       trailing_index: true,
@@ -18,4 +21,4 @@ function prettyUrls(url, options = {}) {
   return url
 }
 
-module.exports = prettyUrls
+export = prettyUrls

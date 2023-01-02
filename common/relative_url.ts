@@ -1,12 +1,10 @@
-'use strict'
+import { encodeUrl } from '../utils'
 
-const { encodeUrl } = require('../index')
+import Cache from './cache'
 
-const Cache = require('./cache')
+const cache = new Cache<() => string>()
 
-const cache = new Cache()
-
-function relativeUrl(from = '', to = '') {
+function relativeUrlHelper(from = '', to = '') {
   return cache.apply(`${from}-${to}`, () => {
     const fromParts = from.split('/')
     const toParts = to.split('/')
@@ -34,4 +32,4 @@ function relativeUrl(from = '', to = '') {
   })
 }
 
-module.exports = relativeUrl
+export = relativeUrlHelper

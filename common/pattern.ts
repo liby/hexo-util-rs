@@ -1,11 +1,11 @@
-'use strict'
-
-const { escapeRegExp } = require('../index')
+import { escapeRegExp } from '../utils'
 
 const rParam = /([:*])([\w?]*)?/g
 
 class Pattern {
-  constructor(rule) {
+  match: (str: string) => any
+
+  constructor(rule: Pattern | ((str: string) => any) | RegExp | string) {
     if (rule instanceof Pattern) {
       return rule
     } else if (typeof rule === 'function') {
@@ -19,21 +19,21 @@ class Pattern {
     }
   }
 
-  test(str) {
+  test(str: string) {
     return Boolean(this.match(str))
   }
 }
 
-function regexFilter(rule) {
-  return (str) => str.match(rule)
+function regexFilter(rule: RegExp) {
+  return (str: string) => str.match(rule)
 }
 
-function stringFilter(rule) {
-  const params = []
+function stringFilter(rule: string) {
+  const params: string[] = []
 
   const regex = escapeRegExp(rule)
     .replace(/\\([*?])/g, '$1')
-    .replace(rParam, (match, operator, name) => {
+    .replace(rParam, (_match, operator, name) => {
       let str = ''
 
       if (operator === '*') {
@@ -54,7 +54,7 @@ function stringFilter(rule) {
       return str
     })
 
-  return (str) => {
+  return (str: string) => {
     const match = str.match(regex)
     if (!match) return
 
@@ -70,4 +70,4 @@ function stringFilter(rule) {
   }
 }
 
-module.exports = Pattern
+export = Pattern

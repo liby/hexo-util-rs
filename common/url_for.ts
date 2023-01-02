@@ -1,14 +1,12 @@
-'use strict'
+import { parse } from 'url'
 
-const { parse } = require('url')
+import { encodeUrl } from '../utils'
 
-const { encodeUrl } = require('../index')
+import Cache from './cache'
+import prettyUrls from './pretty_urls'
+import relative_url from './relative_url'
 
-const Cache = require('./cache')
-const prettyUrls = require('./pretty_urls')
-const relative_url = require('./relative_url')
-
-const cache = new Cache()
+const cache = new Cache<() => string>()
 
 function urlForHelper(path = '/', options) {
   if (/^(#|\/\/|http(s)?:)/.test(path)) return path
@@ -40,7 +38,7 @@ function urlForHelper(path = '/', options) {
   return cache.apply(
     `${config.url}-${root}-${prettyUrlsOptions.trailing_index}-${prettyUrlsOptions.trailing_html}-${path}`,
     () => {
-      const sitehost = parse(config.url).hostname || config.url
+      const sitehost = parse(config.url).hostname ?? config.url
       const data = new URL(path, `http://${sitehost}`)
 
       // Exit if input is an external link or a data url
@@ -58,4 +56,4 @@ function urlForHelper(path = '/', options) {
   )
 }
 
-module.exports = urlForHelper
+export = urlForHelper

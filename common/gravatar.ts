@@ -1,17 +1,15 @@
-'use strict'
+import { BinaryLike, createHash } from 'crypto'
+import { ParsedUrlQueryInput, stringify } from 'querystring'
 
-const { createHash } = require('crypto')
-const { stringify } = require('querystring')
-
-const Cache = require('./cache')
+import Cache from './cache'
 
 const cache = new Cache()
 
-function md5(str) {
+function md5(str: BinaryLike) {
   return createHash('md5').update(str).digest('hex')
 }
 
-function gravatarHelper(email, options) {
+function gravatarHelper(email: string, options: ParsedUrlQueryInput | number) {
   if (typeof options === 'number') {
     options = { s: options }
   }
@@ -28,4 +26,4 @@ function gravatarHelper(email, options) {
   return str
 }
 
-module.exports = gravatarHelper
+export = gravatarHelper
