@@ -1,6 +1,5 @@
-import { encodeUrl } from '../utils'
-
 import Cache from './cache'
+import encodeUrl from './encode_url'
 
 const cache = new Cache<() => string>()
 

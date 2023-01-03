@@ -1,14 +1,18 @@
 import { parse } from 'url'
 
-import { encodeUrl } from '../utils'
-
 import Cache from './cache'
+import encodeUrl from './encode_url'
 import prettyUrls from './pretty_urls'
 import relative_url from './relative_url'
 
 const cache = new Cache<() => string>()
 
-function urlForHelper(path = '/', options) {
+function urlForHelper(
+  path = '/',
+  options?: {
+    relative: boolean
+  },
+) {
   if (/^(#|\/\/|http(s)?:)/.test(path)) return path
 
   const { config } = this

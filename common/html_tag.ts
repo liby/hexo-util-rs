@@ -1,4 +1,6 @@
-import { encodeUrl, escapeHtml } from '../utils'
+import { escapeHtml } from '../utils'
+
+import encodeUrl from './encode_url'
 
 const regexUrl = /(cite|download|href|src|url)$/i
 const regexMeta = /^(og:|twitter:)(audio|image|url|video)(:secure_url)?$/i
