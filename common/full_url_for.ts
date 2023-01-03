@@ -1,8 +1,7 @@
 import { parse } from 'url'
 
-import { encodeUrl } from '../utils'
-
 import Cache from './cache'
+import encodeUrl from './encode_url'
 import prettyUrls from './pretty_urls'
 
 const cache = new Cache()
