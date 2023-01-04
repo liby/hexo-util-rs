@@ -1,6 +1,6 @@
 {
   "name": "@libyo/hexo-util-linux-arm64-musl",
-  "version": "0.0.13",
+  "version": "0.1.0",
   "os": [
     "linux"
   ],
