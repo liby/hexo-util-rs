@@ -1,9 +1,9 @@
 {
-  "name": "@napi-rs/hexo-util",
-  "version": "0.0.13",
+  "name": "@libyo/hexo-util",
+  "version": "0.0.12",
   "description": "Utilities for Hexo using rust rewrite",
   "main": "index.js",
-  "repository": "git@github.com:liby/hexo-util-rs.git",
+  "repository": "https://github.com/liby/hexo-util-rs",
   "license": "MIT",
   "keywords": [
     "napi-rs",
@@ -23,7 +23,7 @@
     "index.js",
     "utils.d.ts",
     "utils.js",
-    "scripts/"
+    "scripts"
   ],
   "napi": {
     "name": "hexo-util",

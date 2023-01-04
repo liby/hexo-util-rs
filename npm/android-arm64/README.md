@@ -1,3 +1,3 @@
-# `@napi-rs/hexo-util-android-arm64`
+# `@libyo/hexo-util-android-arm64`
 
-This is the **aarch64-linux-android** binary for `@napi-rs/hexo-util`
+This is the **aarch64-linux-android** binary for `@libyo/hexo-util`

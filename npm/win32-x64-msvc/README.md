@@ -1,3 +1,3 @@
-# `@napi-rs/hexo-util-win32-x64-msvc`
+# `@libyo/hexo-util-win32-x64-msvc`
 
-This is the **x86_64-pc-windows-msvc** binary for `@napi-rs/hexo-util`
+This is the **x86_64-pc-windows-msvc** binary for `@libyo/hexo-util`

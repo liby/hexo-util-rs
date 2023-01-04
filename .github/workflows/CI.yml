@@ -18,7 +18,7 @@ env:
   pull_request: null
 jobs:
   build:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: '!contains(github.event.head_commit.message, "skip ci")'
     strategy:
       fail-fast: false
       matrix:
@@ -153,7 +153,7 @@ jobs:
         if: ${{ matrix.settings.docker }}
         with:
           image: ${{ matrix.settings.docker }}
-          options: --user 0:0 -v ${{ github.workspace }}/.cargo-cache/git/db:/usr/local/cargo/git/db -v ${{ github.workspace }}/.cargo/registry/cache:/usr/local/cargo/registry/cache -v ${{ github.workspace }}/.cargo/registry/index:/usr/local/cargo/registry/index -v ${{ github.workspace }}:/build -w /build
+          options: '--user 0:0 -v ${{ github.workspace }}/.cargo-cache/git/db:/usr/local/cargo/git/db -v ${{ github.workspace }}/.cargo/registry/cache:/usr/local/cargo/registry/cache -v ${{ github.workspace }}/.cargo/registry/index:/usr/local/cargo/registry/index -v ${{ github.workspace }}:/build -w /build'
           run: ${{ matrix.settings.build }}
       - name: Build
         run: ${{ matrix.settings.build }}
@@ -239,7 +239,7 @@ jobs:
       - name: Download Apple Emoji font
         uses: robinraju/release-downloader@v1
         with:
-          repository: 'PoomSmart/EmojiLibrary'
+          repository: PoomSmart/EmojiLibrary
           latest: true
           fileName: AppleColorEmoji@2x.ttf
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -268,7 +268,6 @@ jobs:
         with:
           name: failure-images-${{ matrix.settings.target }}-${{ matrix.node }}
           path: __test__/failure/**
-
   test-linux-x64-gnu-binding:
     name: Test bindings on Linux-x64-gnu - node@${{ matrix.node }}
     needs:
@@ -307,7 +306,6 @@ jobs:
         with:
           name: failure-images-x86_64-unknown-linux-gnu-${{ matrix.node }}
           path: __test__/failure/**
-
   test-linux-x64-musl-binding:
     name: Test bindings on x86_64-unknown-linux-musl - node@${{ matrix.node }}
     needs:
@@ -348,7 +346,6 @@ jobs:
         with:
           name: failure-images-x86_64-unknown-linux-musl-${{ matrix.node }}
           path: __test__/failure/**
-
   test-linux-aarch64-gnu-binding:
     name: Test bindings on aarch64-unknown-linux-gnu - node@${{ matrix.node }}
     needs:
@@ -392,7 +389,6 @@ jobs:
         with:
           name: failure-images-aarch64-unknown-linux-gnu-${{ matrix.node }}
           path: __test__/failure/**
-
   test-linux-aarch64-musl-binding:
     name: Test bindings on aarch64-unknown-linux-musl - node@${{ matrix.node }}
     needs:
@@ -429,7 +425,6 @@ jobs:
         with:
           name: failure-images-aarch64-unknown-linux-musl-${{ matrix.node }}
           path: __test__/failure/**
-
   test-linux-arm-gnueabihf-binding:
     name: Test bindings on armv7-unknown-linux-gnueabihf - node@${{ matrix.node }}
     needs:
@@ -472,7 +467,6 @@ jobs:
         with:
           name: failure-images-armv7-unknown-linux-gnueabihf-${{ matrix.node }}
           path: __test__/failure/**
-
   publish:
     name: Publish
     runs-on: ubuntu-latest

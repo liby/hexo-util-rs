@@ -1,6 +1,6 @@
 {
-  "name": "@napi-rs/hexo-util-freebsd-x64",
-  "version": "1.0.0",
+  "name": "@libyo/hexo-util-freebsd-x64",
+  "version": "0.0.12",
   "os": [
     "freebsd"
   ],
@@ -11,14 +11,17 @@
   "files": [
     "hexo-util.freebsd-x64.node"
   ],
-  "description": "Template project for writing node package with napi-rs",
+  "description": "Utilities for Hexo using rust rewrite",
   "keywords": [
     "napi-rs",
     "NAPI",
     "N-API",
     "Rust",
     "node-addon",
-    "node-addon-api"
+    "node-addon-api",
+    "hexo",
+    "util",
+    "utilities"
   ],
   "license": "MIT",
   "engines": {
@@ -28,5 +31,5 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "repository": "git@github.com:napi-rs/package-template.git"
+  "repository": "https://github.com/liby/hexo-util-rs"
 }

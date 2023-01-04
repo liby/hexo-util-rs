@@ -1,3 +1,3 @@
-# `@napi-rs/hexo-util-freebsd-x64`
+# `@libyo/hexo-util-freebsd-x64`
 
-This is the **x86_64-unknown-freebsd** binary for `@napi-rs/hexo-util`
+This is the **x86_64-unknown-freebsd** binary for `@libyo/hexo-util`

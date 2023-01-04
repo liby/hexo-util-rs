@@ -1,3 +1,3 @@
-# `@napi-rs/hexo-util-linux-x64-musl`
+# `@libyo/hexo-util-linux-x64-musl`
 
-This is the **x86_64-unknown-linux-musl** binary for `@napi-rs/hexo-util`
+This is the **x86_64-unknown-linux-musl** binary for `@libyo/hexo-util`
