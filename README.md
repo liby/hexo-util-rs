@@ -1,4 +1,4 @@
-# `@napi-rs/hexo-util` · [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![https://github.com/liby/hexo-util-rs/actions](https://github.com/liby/hexo-util-rs/workflows/CI/badge.svg)](https://github.com/liby/hexo-util-rs/actions) [![NPM version](https://badge.fury.io/js/@sukka%2Fhexo-util-rs.svg)](https://www.npmjs.com/package/@sukka/hexo-util-rs)
+# `@napi-rs/hexo-util` · [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![https://github.com/liby/hexo-util-rs/actions](https://github.com/liby/hexo-util-rs/workflows/CI/badge.svg)](https://github.com/liby/hexo-util-rs/actions) [![NPM version](https://badge.fury.io/js/@libyo%2Fhexo-util.svg)](https://www.npmjs.com/package/@libyo/hexo-util)
 
 > **Note**
 >
@@ -12,17 +12,17 @@
 ## Installation
 
 ```bash
-$ npm install @sukka/hexo-util-rs
+$ npm install @libyo/hexo-util
 // or
-$ yarn add @sukka/hexo-util-rs
+$ yarn add @libyo/hexo-util
 // or
-$ pnpm add @sukka/hexo-util-rs
+$ pnpm add @libyo/hexo-util
 ```
 
 ## Usage
 
 ```js
-const util = require('@sukka/hexo-util-rs')
+const util = require('@libyo/hexo-util')
 ```
 
 | Function name                              | Is RIIR |                                                                             Usage                                                                              | Is Rename                        |
