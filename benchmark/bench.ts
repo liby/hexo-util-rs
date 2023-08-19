@@ -1,5 +1,4 @@
-// @ts-expect-error missing Cache definition in @types/hexo-util
-import { Cache } from 'hexo-util'
+import { Cache } from '../common'
 
 import { benchDecodeUrl } from './decode_url'
 import { benchEncodeUrl } from './encode_url'
@@ -10,9 +9,9 @@ import { benchIsExternalLink } from './is_external_link'
 import { benchSlugize } from './slugize'
 import { benchStripTags } from './strip_html'
 import { benchUnescapeHtml } from './unescape_html'
+import { benchWordWrap } from './word_wrap'
 
 // For fairness, caching in both implementations is not used.
-// @ts-expect-error missing Cache definition in @types/hexo-util
 Cache.prototype.apply = (_, val) => val()
 
 benchStripTags()
@@ -24,6 +23,7 @@ benchStripTags()
   .then(benchUnescapeHtml)
   .then(benchEscapeHtml)
   .then(benchEscapeRegExp)
+  .then(benchWordWrap)
   .catch((e) => {
     console.error(e)
   })

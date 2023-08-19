@@ -2,7 +2,6 @@ import fs from 'fs'
 import { join as pathJoin } from 'path'
 
 import b from 'benny'
-// @ts-expect-error missing unescapeHTML definition in @types/hexo-util
 import { unescapeHTML as hexoUnescapeHtml } from 'hexo-util'
 
 import { unescapeHtml } from '../index'

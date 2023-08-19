@@ -1,5 +1,4 @@
 import b from 'benny'
-// @ts-expect-error missing isExternalLink definition in @types/hexo-util
 import { isExternalLink as hexoIsExternalLink } from 'hexo-util'
 
 import { isExternalLink as isExternalLinkWithEarlyReturn } from '../index.js'
@@ -12,6 +11,7 @@ export async function benchIsExternalLink() {
       isExternalLink('https://hexo.io/docs/', 'https://hexo.io/')
     }),
     b.add('hexo-util', () => {
+      // @ts-expect-error
       hexoIsExternalLink('https://hexo.io/docs/', 'https://hexo.io/')
     }),
 
@@ -25,6 +25,7 @@ export async function benchIsExternalLink() {
       isExternalLink('https://example.com/example/', 'https://hexo.io/')
     }),
     b.add('hexo-util', () => {
+      // @ts-expect-error
       hexoIsExternalLink('https://example.com/example/', 'https://hexo.io/')
     }),
 
@@ -38,6 +39,7 @@ export async function benchIsExternalLink() {
       isExternalLinkWithEarlyReturn('/example/', 'https://hexo.io/')
     }),
     b.add('hexo-util', () => {
+      // @ts-expect-error
       hexoIsExternalLink('/example/', 'https://hexo.io/')
     }),
 

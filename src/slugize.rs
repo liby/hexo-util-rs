@@ -3,7 +3,7 @@ use deunicode::deunicode_char;
 use napi::bindgen_prelude::*;
 
 #[napi(object)]
-pub struct Options {
+pub struct SlugizeOptions {
   pub separator: Option<String>,
   pub transform: Option<u8>,
 }
@@ -11,9 +11,9 @@ pub struct Options {
 #[napi]
 pub fn slugize(
   #[napi(ts_arg_type = "Buffer | string")] str: Either3<Buffer, String, Unknown>,
-  options: Option<Options>,
+  options: Option<SlugizeOptions>,
 ) -> Result<String> {
-  let options = options.unwrap_or_else(|| Options {
+  let options = options.unwrap_or_else(|| SlugizeOptions {
     separator: Some("-".to_owned()),
     transform: None,
   });

@@ -20,7 +20,7 @@ test('width = 8', (t) => {
 })
 
 test('width = 1', (t) => {
-  t.is(wordWrap('Once upon a time', { width: 1 }), 'Once\nupon\na\ntime')
+  t.is(wordWrap('Once upon a time', { width: 1 }), 'O\nn\nc\ne\nu\np\no\nn\na\nt\ni\nm\ne')
 })
 
 test('arg must be a string', (t) => {

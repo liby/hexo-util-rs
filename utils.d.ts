@@ -13,10 +13,14 @@ export function isExternalLink(
   sitehost: string,
   exclude?: string | Array<string> | undefined | null,
 ): boolean
-export interface Options {
+export interface SlugizeOptions {
   separator?: string
   transform?: number
 }
-export function slugize(str: Buffer | string, options?: Options | undefined | null): string
+export function slugize(str: Buffer | string, options?: SlugizeOptions | undefined | null): string
 export function stripTags(htmlContent: Buffer | string): string
 export function unescapeHtml(input: Buffer | string): string
+export interface WordWrapOptions {
+  width: number
+}
+export function wordWrap(s: string, options?: WordWrapOptions | undefined | null): string

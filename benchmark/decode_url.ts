@@ -1,7 +1,7 @@
 import b from 'benny'
-// @ts-expect-error missing decodeURL definition in @types/hexo-util
-import { decodeURL as hexoDecodeUrl } from 'hexo-util'
 
+// @ts-expect-error missing decodeURL definition in @types/hexo-util
+import { decodeURL as hexoDecodeUrl } from '../common'
 import { decodeUrl } from '../index'
 
 export async function benchDecodeUrl() {

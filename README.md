@@ -51,7 +51,7 @@ const util = require('@libyo/hexo-util')
 | `slugize(str, [options])`                  |     Yes |                         [Transforms a string into a clean URL-friendly string](https://github.com/hexojs/hexo-util#slugizestr-options)                         |                                  |
 | `spawn(command, [args], [options])`        |      No |                         [Launches a new process with the given command](https://github.com/hexojs/hexo-util#spawncommand-args-options)                         |                                  |
 | `stripTags(str)`                           |     Yes |                                       [Removes HTML tags in a string](https://github.com/hexojs/hexo-util#striphtmlstr)                                        | `stripHTML` => `stripTags`       |
-| `stripIndent(str)`                         |      No |                           [Strip leading whitespace from each line in a string](https://github.com/hexojs/hexo-util#stripindentstr)                            |                                  |
+| `stripIndent(str)`                         |     Yes |                           [Strip leading whitespace from each line in a string](https://github.com/hexojs/hexo-util#stripindentstr)                            |                                  |
 | `wordWrap(str, [options])`                 |     n/a |                             [Wraps the string no longer than line width](https://github.com/hexojs/hexo-util#wordwrapstr-options)                              |                                  |
 | `tocObj(str, [options])`                   |     n/a |              [Generate a table of contents in JSON format based on the given html string](https://github.com/hexojs/hexo-util#tocobjstr-options)               |                                  |
 | `truncate(str, [options])`                 |     n/a |              [Truncates a given text after a given length if text is longer than length](https://github.com/hexojs/hexo-util#truncatestr-options)              |                                  |
@@ -516,6 +516,27 @@ Progress: 100%
     4 833 899 ops/s, ±0.47%   | fastest
   hexo-util:
     3 128 195 ops/s, ±1.36%   | slowest, 35.29% slower
+Finished 2 cases!
+  Fastest: hexo-util-rs
+  Slowest: hexo-util
+```
+
+</details>
+
+<details>
+<summary>Word Wrap </summary>
+
+```
+❯ yarn bench
+Running "Word Wrap" suite...
+Progress: 100%
+
+  hexo-util:
+    1 289 014 ops/s, ±0.41%   | slowest, 66.98% slower
+
+  hexo-util-rs:
+    3 903 226 ops/s, ±0.89%   | fastest
+
 Finished 2 cases!
   Fastest: hexo-util-rs
   Slowest: hexo-util

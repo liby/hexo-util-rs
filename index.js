@@ -23,9 +23,8 @@ const {
   tocObj,
   truncate,
   urlFor,
-  wordWrap,
 } = require('./common')
-const { escapeDiacritic, escapeHtml, escapeRegExp, slugize, stripTags, unescapeHtml } = require('./utils')
+const { escapeDiacritic, escapeHtml, escapeRegExp, slugize, stripTags, unescapeHtml, wordWrap } = require('./utils')
 
 module.exports = {
   Cache,
