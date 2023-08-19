@@ -42,7 +42,7 @@ pub fn is_external_link(
     .map_err(|_| {
       Error::new(
         Status::InvalidArg,
-        "sitehost is neither a valid URL nor a hostname".into(),
+        "sitehost is neither a valid URL nor a hostname".to_string(),
       )
     })?;
 
