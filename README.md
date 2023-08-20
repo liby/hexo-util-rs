@@ -26,7 +26,7 @@ const util = require('@libyo/hexo-util')
 ```
 
 | Function name                              | Is RIIR |                                                                             Usage                                                                              | Is Rename                        |
-|:-------------------------------------------|--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------:|----------------------------------|
+| :----------------------------------------- | ------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------: | -------------------------------- |
 | `Cache()`                                  |      No |                                            [A simple plain object cache](https://github.com/hexojs/hexo-util#cache)                                            |                                  |
 | `CacheStream()`                            |      No |                                     [Caches contents piped to the stream](https://github.com/hexojs/hexo-util#cachestream)                                     |                                  |
 | `camelCaseKeys(obj, options)`              |      No |                                [Convert object keys to camelCase](https://github.com/hexojs/hexo-util#camelcasekeysobj-options)                                |                                  |
@@ -56,10 +56,10 @@ const util = require('@libyo/hexo-util')
 | `tocObj(str, [options])`                   |     n/a |              [Generate a table of contents in JSON format based on the given html string](https://github.com/hexojs/hexo-util#tocobjstr-options)               |                                  |
 | `truncate(str, [options])`                 |     n/a |              [Truncates a given text after a given length if text is longer than length](https://github.com/hexojs/hexo-util#truncatestr-options)              |                                  |
 | `unescapeHtml(str)`                        |     Yes |                                   [Unescapes HTML entities in a string](https://github.com/hexojs/hexo-util#unescapehtmlstr)                                   | `unescapeHTML` => `unescapeHtml` |
-| `urlFor(path, [option])`                   |      No |                              [Returns a url with the root path prefixed](https://github.com/hexojs/hexo-util#url_forpath-option)                               | `url_for` =>   `urlFor`          |
+| `urlFor(path, [option])`                   |      No |                              [Returns a url with the root path prefixed](https://github.com/hexojs/hexo-util#url_forpath-option)                               | `url_for` => `urlFor`            |
 
 > **Note**
-> 
+>
 > [`full_url_for`, `url_for`, `relative_url` require `bind` or `call` to parse the user config when initializing](https://github.com/hexojs/hexo-util#bindhexo).
 
 ## Performance

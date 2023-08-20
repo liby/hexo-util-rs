@@ -31,7 +31,7 @@ function htmlTag(
     if (attrs[i] == null) result += ''
     else {
       if (
-        i.match(regexUrl) ||
+        i.match(regexUrl) ??
         (tag === 'meta' && !String(attrs[i]).match(regexMeta) && String(Object.values(attrs)[0]).match(regexMeta))
       ) {
         result += ` ${escapeHtml(i)}="${encodeUrl(String(attrs[i]))}"`
