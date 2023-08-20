@@ -166,7 +166,7 @@ __metadata:
     highlight.js: ^11.6.0
     html-entities: ^2.4.0
     html-tag-validator: ^1.6.0
-    htmlparser2: ^8.0.1
+    htmlparser2: ^9.0.0
     husky: ^8.0.2
     lint-staged: ^14.0.0
     npm-run-all: ^4.1.5
@@ -1495,7 +1495,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"domutils@npm:^3.0.1, domutils@npm:^3.1.0":
+"domutils@npm:^3.1.0":
   version: 3.1.0
   resolution: "domutils@npm:3.1.0"
   dependencies:
@@ -1543,7 +1543,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"entities@npm:^4.2.0, entities@npm:^4.4.0, entities@npm:^4.5.0":
+"entities@npm:^4.2.0, entities@npm:^4.5.0":
   version: 4.5.0
   resolution: "entities@npm:4.5.0"
   checksum: 853f8ebd5b425d350bffa97dd6958143179a5938352ccae092c62d1267c4e392a039be1bae7d51b6e4ffad25f51f9617531fedf5237f15df302ccfb452cbf2d7
@@ -2418,18 +2418,6 @@ __metadata:
   version: 1.6.0
   resolution: "html-tag-validator@npm:1.6.0"
   checksum: b860e1dab2051692bb1c80b076e40d37f15be19b60166021bfa05a3ca179cfbca238f9aa78ce7777e02e8472f9a1611d7f122eb09c9467ae5ae702b1bdc633fb
-  languageName: node
-  linkType: hard
-
-"htmlparser2@npm:^8.0.1":
-  version: 8.0.2
-  resolution: "htmlparser2@npm:8.0.2"
-  dependencies:
-    domelementtype: ^2.3.0
-    domhandler: ^5.0.3
-    domutils: ^3.0.1
-    entities: ^4.4.0
-  checksum: 29167a0f9282f181da8a6d0311b76820c8a59bc9e3c87009e21968264c2987d2723d6fde5a964d4b7b6cba663fca96ffb373c06d8223a85f52a6089ced942700
   languageName: node
   linkType: hard
 
