@@ -83,7 +83,7 @@
     "eslint": "^8.29.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-prettier": "^5.0.0",
     "hexo-util": "^3.1.0",
     "html-entities": "^2.4.0",
     "html-tag-validator": "^1.6.0",
