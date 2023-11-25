@@ -15,7 +15,7 @@ napi-derive = "2"
 deunicode = "1"
 url = "2"
 percent-encoding = "2"
-idna = "0.4"
+idna = "0.5"
 html-escape = "0.2.11"
 regex = "1.6.0"
 
